@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-us" style="height:100%;">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Firebase Authentication</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>  
+    </head>
+    <body>
+        <div class="jumbotron">
+            <div class="container ">
+                <div class="row">
+                    <h1 class="display-4">Firebase Authentication</h1>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="modal fade" role="dialog" id="createAccount" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Account</h5>
+                                <button type="button" class="close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="px-4 py-3">
+                                    <div class="form-group">
+                                        <label>Email address</label>
+                                        <input type="email" class="form-control" id="newEmail" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" id="newPassword" placeholder="Password">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="newUser" type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="dropright">
+                        <button class="btn btn-secondary" type="button" id="logout">Sign Out</button>
+                        <button class="btn btn-secondary" type="button" id="loginMenu" data-toggle="dropdown">Sign In</button>
+                        <div id="signUp" class="dropdown-menu">
+                            <form id="existingAccount" class="px-4 py-3">
+                                <div class="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                </div>
+                                <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            <!-- Forgot Password Link -->
+                            <!-- Needs a Modal -->
+                            <!-- <form id="forgotPassword" class="px-4 py-3">
+                                <div class="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" class="form-control" id="existingEmail" placeholder="Enter email">
+                                </div>
+                                <button id="newPassword" type="submit" class="btn btn-primary">Submit</button>
+                            </form> -->
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#createAccount">Create an Account</a>
+                            <!-- Forgot Password Link -->
+                            <!-- <a class="dropdown-item" href="#" id="togglePassword">Forgot password?</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
