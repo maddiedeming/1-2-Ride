@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
+      authDomain: "one2ride-193914.firebaseapp.com",
+      databaseURL: "https://one2ride-193914.firebaseio.com",
+      projectId: "one2ride-193914",
+      storageBucket: "",
+      messagingSenderId: "232944570362"
+    };
+    firebase.initializeApp(config);
+  </script>
+      <title>TestDoc</title>
+</head>
+<body>
+  <nav></nav>
+  <header></header>
+  <section id="formContainer" class="container">
+  <form class="form-group">
+    <button id="currentLocation">Use Current Location</button>
+    <div class="form-group">
+    <label>address</label>
+    <input type="text" id="address" class="form-control">
+    </div><div class="form-group">
+    <label>city</label>
+    <input type="text" id="city" class="form-control">
+    </div>
+    <div class="form-group">
+    <label>state</label>
+    <input type="text" id="state" class="form-control">
+    </div>
+    <div class="form-group">
+    <label>destination address</label>
+    <input type="text" id="destAddress" class="form-control">
+    </div>
+    <div class="form-group">
+    <label> destination city</label>
+    <input type="text" id="destCity" class="form-control">
+    </div>
+    <div class="form-group">
+    <label>destination state</label>
+    <input type="text" id="destState" class="form-control">
+    </div>
+    <button id="submit">Submit</button>
+  </form>
+  </section>
+  <script>
+    //below funtion takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) 
+    function replaceSpaces(toBeReplaced){
+        toBeReplaced = toBeReplaced.replace(/ /g,"+");
+        return toBeReplaced;
+    }
+    //below function uses the geolocation function from the browser and returns the lat/long. It then populates the form accordingly, setting up 
+    //for when the person adds destination address 
+     function getCurrentLocation(){
+       event.preventDefault();
+        if ("geolocation" in navigator) {
+            /* geolocation is available */navigator.geolocation.getCurrentPosition(function(position) {
+              let lat = position.coords.latitude;
+              let lng = position.coords.longitude;
+              $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
+              type:"GET"})
+              .done(function(results){
+                let currentAddress = results.results[0].address_components[0].long_name + " " + results.results[0].address_components[1].short_name;
+                let currentCity = results.results[0].address_components[2].short_name;
+                let currentState = results.results[0].address_components[5].short_name;
+                $("#address").val(currentAddress);
+                $("#city").val(currentCity);
+                $("#state").val(currentState);
+                })
+              .fail(function(err){console.log(err)})
+          });
+          } else {
+            /* geolocation IS NOT available */
+            //Add Module here to alert must enter address
+            console.log("not available")
+          }
+      }
+    function submitInfo(){
+      event.preventDefault();
+      let address = replaceSpaces($("#address").val());
+      let city = replaceSpaces($("#city").val().trim());
+      let state = $("#state").val().trim();
+      let lat = 0;
+      let lng = 0;
+      let destAddress = replaceSpaces($("#destAddress").val());
+      let destCity = replaceSpaces($("#destCity").val());
+      let destState = $("#destState").val();
+     
+
+      //Lyft Begins
+      $.ajax({url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+              type:"GET",})
+        .done(function(response){
+          lat = response.results[0].geometry.location.lat;
+        })
+        .fail(function(error){
+          console.log(error)
+        })
+        .then(function(){
+          $.ajax({url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destAddress + ',+' + destCity + ',+' + destState + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+                  type:"GET",})
+          .done(function(response){
+            lng = response.results[0].geometry.location.lng;
+          })
+          .then(function(){
+            $.ajax({url: 'https://api.lyft.com/v1/ridetypes?lat=' +lat + '&lng=' + lng, 
+                  type:"GET",
+                  headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='}})
+            .done(function(response){
+              console.log("Below are the results coming back from Lyft: ")
+              console.log(response)
+            })
+          })
+          .fail(function(error){
+            console.log(error)
+          })
+        })
+      //Lyft Ends
+      //Uber Call
+        $.ajax({url: 'https://api.uber.com/v1.2/products?latitude=37.7752315&longitude=-122.418075', 
+                type: 'GET',
+                headers:{Authorization: 'Token YEEveIYDU-uU4BRcgORqnvoLRtrCtQDzc0yvbRVs'}})
+                .done(function(response){
+                  console.log("Below are the results coming back from Uber: ")
+                  console.log(response)
+                }).fail(function(error){
+                  console.log(error)
+                });
+                    }
+      $("#submit").on("click", submitInfo);
+      $("#currentLocation").on("click", getCurrentLocation)
+    </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0&libraries=geometry,places" async defer></script>
+        
+</body>
+</html>
