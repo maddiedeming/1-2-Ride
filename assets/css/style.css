@@ -1,6 +1,6 @@
 .form-section {
     margin-top: 10%;
-    border: 1px solid #047aff;
+    border: 1px solid #343a40;
     border-radius: 5px;
 }
 
@@ -15,3 +15,13 @@ form {
 img {
     height: 300px;
 }
+
+button {
+   background-color: #343a40!important;
+   border-color: #343a40!important;
+}
+
+canvas {
+    background-color: #343a40!important;
+}
+
