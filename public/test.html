@@ -103,7 +103,8 @@
       $.ajax({url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
               type:"GET",})
         .done(function(response){
-          lat = response.results[0].geometry.location.lat;
+          startLat = response.results[0].geometry.location.lat;
+          startLng = response.results[0].geometry.location.lng;
         })
         .fail(function(error){
           console.log(error)
@@ -112,10 +113,11 @@
           $.ajax({url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destAddress + ',+' + destCity + ',+' + destState + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
                   type:"GET",})
           .done(function(response){
-            lng = response.results[0].geometry.location.lng;
+            destLat = response.results[0].geometry.location.lat;
+            destLng = response.results[0].geometry.location.lng;
           })
           .then(function(){
-            $.ajax({url: 'https://api.lyft.com/v1/ridetypes?lat=' +lat + '&lng=' + lng, 
+            $.ajax({url: 'https://api.lyft.com/v1/cost?start_lat=' +startLat + '&start_lng=' + startLng + "&end_lat=" + destLat + "&end_lng=" + destLng, 
                   type:"GET",
                   headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='}})
             .done(function(response){
