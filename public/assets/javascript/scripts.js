@@ -1,62 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
-      authDomain: "one2ride-193914.firebaseapp.com",
-      databaseURL: "https://one2ride-193914.firebaseio.com",
-      projectId: "one2ride-193914",
-      storageBucket: "",
-      messagingSenderId: "232944570362"
-    };
-    firebase.initializeApp(config);
-  </script>
-      <title>TestDoc</title>
-</head>
-<body>
-  <nav></nav>
-  <header></header>
-  <section id="formContainer" class="container">
-  <form class="form-group">
-    <button id="currentLocation">Use test Location</button>
-    <div class="form-group">
-    <label>address</label>
-    <input type="text" id="address" class="form-control">
-    </div><div class="form-group">
-    <label>city</label>
-    <input type="text" id="city" class="form-control">
-    </div>
-    <div class="form-group">
-    <label>state</label>
-    <input type="text" id="state" class="form-control">
-    </div>
-    <div class="form-group">
-    <label>destination address</label>
-    <input type="text" id="destAddress" class="form-control">
-    </div>
-    <div class="form-group">
-    <label> destination city</label>
-    <input type="text" id="destCity" class="form-control">
-    </div>
-    <div class="form-group">
-    <label>destination state</label>
-    <input type="text" id="destState" class="form-control">
-    </div>
-    <button id="submit">Submit</button>
-  </form>
-  </section>
-  <script>
-    //below funtion takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) 
+//below funtion takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) 
     function replaceSpaces(toBeReplaced){
         toBeReplaced = toBeReplaced.replace(/ /g,"+");
         return toBeReplaced;
@@ -65,10 +7,8 @@
     //for when the person adds destination address 
      function getCurrentLocation(){
        event.preventDefault();
-       console.log("Hello");
         if ("geolocation" in navigator) {
             /* geolocation is available */navigator.geolocation.getCurrentPosition(function(position) {
-              console.log(position);
               let lat = position.coords.latitude;
               let lng = position.coords.longitude;
               $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
@@ -89,6 +29,27 @@
             console.log("not available")
           }
       }
+    function parseLyftData(data){
+        let arrayOfRides = data.cost_estimates;
+        console.log(arrayOfRides);
+        arrayOfRides.forEach(function(i) {
+            let newTr = $("<tr>");
+        let newRideTd = $("<td>");
+        let newEstCostTd = $("<td>");
+        let newEstDisTd = $("<td>");
+        let newArrivalTd = $("<td>");
+        let cost = i.estimated_cost_cents_max/100;
+            console.log(i)
+            newRideTd.text(i.display_name);
+            newEstCostTd.text(`$${cost}`);
+            newEstDisTd.text(i.estimated_distance_miles);
+            newTr.append(newRideTd);
+            newTr.append(newEstCostTd);
+            newTr.append(newEstDisTd);
+            $("#lyftDetails").append(newTr);
+        });
+        
+    }
     function submitInfo(){
       event.preventDefault();
       let address = replaceSpaces($("#address").val());
@@ -123,8 +84,8 @@
                   type:"GET",
                   headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='}})
             .done(function(response){
-              console.log("Below are the results coming back from Lyft: ")
-              console.log(response)
+              console.log("Below are the results coming back from Lyft: ");
+              parseLyftData(response);
             })
           })
           .fail(function(error){
@@ -145,8 +106,3 @@
                     }
       $("#submit").on("click", submitInfo);
       $("#currentLocation").on("click", getCurrentLocation)
-    </script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0&libraries=geometry,places" async defer></script>
-        
-</body>
-</html>

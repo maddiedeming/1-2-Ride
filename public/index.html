@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../assets/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
+      authDomain: "one2ride-193914.firebaseapp.com",
+      databaseURL: "https://one2ride-193914.firebaseio.com",
+      projectId: "one2ride-193914",
+      storageBucket: "",
+      messagingSenderId: "232944570362"
+    };
+    firebase.initializeApp(config);
+  </script>
     <title>1-2 Ride</title>
 </head>
 <body>
@@ -22,7 +38,7 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Project Creators</a>
+                    <a class="nav-link" href="bio.html">Project Creators</a>
                 </li>
                 
             </ul>
@@ -74,10 +90,11 @@
                     </div>
                 </div>
                 <button class="btn btn-primary" id="currentLocation">Use Current Location</button>
-                <button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary" type="submit" id="submit">Submit form</button>
             </form>
         </section>
-
+        <section>
+       
         <section class="row chart-section">
             <div class="chart-container col" style="position: relative; height:40vh; width:80vw">
                 <canvas id="line-chart"></canvas>
@@ -110,15 +127,24 @@
             </div>
         </section>
 
-        <section class="row chart-section">
-            <img src = "../assets/images/placeholder-2.jpg" class="col">
+        <!--<section class="row chart-section">
+            <img src = "../assets/images/placeholder-2.jpg" id="img-footer" class="col">
+        </section>-->
+             <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Ride Type</th>
+                    <th scope="col">Est Cost</th>
+                    <th scope="col">Est Distance</th>
+                    <th scope="col">Est Pickup</th>
+                    </tr>
+                </thead>
+                <tbody id="lyftDetails"></tbody>
+            </table>
         </section>
-
-        
-        
-
     </main>
+    <script src="assets/javascript/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
-    <script src="../assets/javascript/charts.js"></script>
+    <script src="assets/javascript/charts.js"></script>
 </body>
 </html>

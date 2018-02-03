@@ -73,17 +73,15 @@ $("#logout").on("click", function(event){
     });
 });
 // Forgot Password Link
-// This works, just need to integrate it better with the UI. Saving for later.
-// $("#togglePassword").on("click", function(event){
-//     event.preventDefault();
-//     $("#forgotPassword").show();
-//     email = $("#existingEmail").val().trim();
-//     $(".form-control").val("");
-//     var auth = firebase.auth();
-//     auth.sendPasswordResetEmail(email).then(function() {
-//         alert("Email Sent!")
-//     }).catch(function(error) {
-//         errorCode = error.code;
-//         errorMessage = error.message;
-//     });
-// });
+$("#forgotPasswordSubmit").on("click", function(event){
+    event.preventDefault();
+    email = $("#forgotPasswordEmail").val().trim();
+    $(".form-control").val("");
+    var auth = firebase.auth();
+    auth.sendPasswordResetEmail(email).then(function() {
+        alert("Email Sent!")
+    }).catch(function(error) {
+        errorCode = error.code;
+        errorMessage = error.message;
+    });
+});
