@@ -29,6 +29,27 @@
             console.log("not available")
           }
       }
+    function parseLyftData(data){
+        let arrayOfRides = data.cost_estimates;
+        console.log(arrayOfRides);
+        arrayOfRides.forEach(function(i) {
+            let newTr = $("<tr>");
+        let newRideTd = $("<td>");
+        let newEstCostTd = $("<td>");
+        let newEstDisTd = $("<td>");
+        let newArrivalTd = $("<td>");
+        let cost = i.estimated_cost_cents_max/100;
+            console.log(i)
+            newRideTd.text(i.display_name);
+            newEstCostTd.text(`$${cost}`);
+            newEstDisTd.text(i.estimated_distance_miles);
+            newTr.append(newRideTd);
+            newTr.append(newEstCostTd);
+            newTr.append(newEstDisTd);
+            $("#lyftDetails").append(newTr);
+        });
+        
+    }
     function submitInfo(){
       event.preventDefault();
       let address = replaceSpaces($("#address").val());
@@ -63,8 +84,8 @@
                   type:"GET",
                   headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='}})
             .done(function(response){
-              console.log("Below are the results coming back from Lyft: ")
-              console.log(response)
+              console.log("Below are the results coming back from Lyft: ");
+              parseLyftData(response);
             })
           })
           .fail(function(error){

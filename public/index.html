@@ -93,7 +93,19 @@
                 <button class="btn btn-primary" type="submit" id="submit">Submit form</button>
             </form>
         </section>
-
+        <section>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Ride Type</th>
+                    <th scope="col">Est Cost</th>
+                    <th scope="col">Est Distance</th>
+                    <th scope="col">Est Pickup</th>
+                    </tr>
+                </thead>
+                <tbody id="lyftDetails"></tbody>
+            </table>
+        </section>
         <section class="row chart-section">
             <div class="chart-container col" style="position: relative; height:40vh; width:80vw">
                 <canvas id="line-chart"></canvas>
