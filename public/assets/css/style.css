@@ -33,7 +33,6 @@ canvas {
     padding: 1em;
     border: thin solid black;
 }
-
 .bio-content img, p{
     float:left;
 }
