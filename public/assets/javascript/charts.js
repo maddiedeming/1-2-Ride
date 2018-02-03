@@ -1,42 +1,46 @@
 
 // Example Line Chart
 
-function getResponseData(response) {
-    return function chartTest(response) {
-        // Label array to 
-        let labels = [];
-        for(var i = 0; i < response.length; i++) {
-            labels.push("Driver " + response[i] + 1);
-        }
-
-        let costData = [];
-        for(var i = 0; i < response.length; i++) {
-            costData.push(response[i].estimated_cost_cents_max);
-        }
-
-        const lineChart = document.getElementById('line-chart').getContext('2d');
-        const textLineChart = new Chart(lineChart, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Placeholder Data Set",
-                    fill: false,
-                    lineTenstion: 0,
-                    borderColor: 'rgb(255, 255, 255)',
-                    data: costData,
-                },
-                // {
-                //     label: "2nd Data Set",
-                //     fill: false,
-                //     backgroundColor: 'rgb(0, 255, 0)',
-                //     borderColor: 'rgb(0, 0, 255)',
-                //     data: [0, 5, 25, 25, 20, 30, 35],
-                // }       
-                ]}
-        });
-    }
-}
+function apples(response){
+    console.log("Got response in chart function");
+      return function chartTest(response) {
+          console.log(response);
+          let labels = [];
+          for(var i = 0; i < response.cost_estimates.length; i++) {
+              labels.push("Driver " + (i + 1));
+          }
+          console.log(labels);
+  
+          let costData = [];
+          for(var i = 0; i < response.cost_estimates.length; i++) {
+              costData.push(response.cost_estimates[i].estimated_cost_cents_max);
+          }
+          console.log(costData);
+  
+          const lineChart = document.getElementById('line-chart').getContext('2d');
+          const textLineChart = new Chart(lineChart, {
+              type: 'line',
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      label: "Placeholder Data Set",
+                      fill: false,
+                      lineTenstion: 0,
+                      borderColor: 'rgb(255, 255, 255)',
+                      data: costData,
+                  }
+                  // {
+                  //     label: "2nd Data Set",
+                  //     fill: false,
+                  //     backgroundColor: 'rgb(0, 255, 0)',
+                  //     borderColor: 'rgb(0, 0, 255)',
+                  //     data: [0, 5, 25, 25, 20, 30, 35],
+                  // }       
+                  ]}
+          });
+          console.log(textLineChart);
+      }
+  }
 
 
 
