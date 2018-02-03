@@ -8,7 +8,8 @@
      function getCurrentLocation(){
        event.preventDefault();
         if ("geolocation" in navigator) {
-            /* geolocation is available */navigator.geolocation.getCurrentPosition(function(position) {
+            /* geolocation is available */
+            navigator.geolocation.getCurrentPosition(function(position) {
               let lat = position.coords.latitude;
               let lng = position.coords.longitude;
               $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
