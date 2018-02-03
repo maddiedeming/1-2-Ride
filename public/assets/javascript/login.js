@@ -15,18 +15,23 @@ var password = "";
 var uid = "";
 var errorCode = "";
 var errorMessage = "";
-//On Load
-$("#logout").hide();
 // Create New User Account
+firebase.auth().onAuthStateChanged(function(user){
+    if(user){
+        $(".loginLink").text("Sign Out");
+    }
+    else{
+        $(".loginLink").text("Login");
+    }
+});
+// Create Account
 $("#newUser").on("click", function(event){
     event.preventDefault();
     email = $("#newEmail").val().trim();
     password = $("#newPassword").val().trim();
     $(".form-control").val("");
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
-        $("#createAccount").modal("hide");
-        $("#loginMenu").hide();
-        $("#logout").show();
+        location.href="index.html";
     }).catch(function(error){
         errorCode = error.code;
         errorMessage = error.message;
@@ -39,38 +44,34 @@ $("#newUser").on("click", function(event){
     });
 });
 // Login Account
-$("#submit").on("click", function(event){
+$("#loginSubmit").on("click", function(event){
     event.preventDefault();
     email = $("#inputEmail").val().trim();
     password = $("#inputPassword").val().trim();
     $(".form-control").val("");
     firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
-        $("#loginMenu").hide();
-        $("#logout").show();
+        location.href="index.html";
     }).catch(function(error){
         errorCode = error.code;
         errorMessage = error.message;
         if(errorCode){
-            // Alert is temporary. Only for testing purposes at the moment.
-            // Will use popover.
             alert(errorMessage);
         }
     });
 });
 // Sign Out of Account
-$("#logout").on("click", function(event){
-    firebase.auth().signOut().then(function(){
-        $("#loginMenu").show();
-        $("#logout").hide();
-    }).catch(function(error) {
-        errorCode = error.code;
-        errorMessage = error.message;
-        if(errorCode){
-            // Alert is temporary. Only for testing purposes at the moment.
-            // Will use popover.
-            alert(errorMessage);
-        }
-    });
+$(".loginLink").on("click", function(event){
+    if($(this).text() === "Sign Out"){
+        firebase.auth().signOut().then(function(){
+            location.href="index.html";
+        }).catch(function(error) {
+            errorCode = error.code;
+            errorMessage = error.message;
+            if(errorCode){
+                alert(errorMessage);
+            }
+        });
+    }
 });
 // Forgot Password Link
 $("#forgotPasswordSubmit").on("click", function(event){
@@ -80,8 +81,11 @@ $("#forgotPasswordSubmit").on("click", function(event){
     var auth = firebase.auth();
     auth.sendPasswordResetEmail(email).then(function() {
         alert("Email Sent!")
-    }).catch(function(error) {
+    }).catch(function(error){
         errorCode = error.code;
         errorMessage = error.message;
+        if(errorCode){
+            alert(errorMessage);
+        }
     });
 });
