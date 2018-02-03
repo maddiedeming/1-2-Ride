@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
+      authDomain: "one2ride-193914.firebaseapp.com",
+      databaseURL: "https://one2ride-193914.firebaseio.com",
+      projectId: "one2ride-193914",
+      storageBucket: "",
+      messagingSenderId: "232944570362"
+    };
+    firebase.initializeApp(config);
+  </script>
+    <title>1-2 Ride</title>
+</head>
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
+        <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i> </a>
+        <div id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bio.html">Project Creators</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="row">
+            <div class="col text-center">
+                <h2> <i class="fab fa-uber"></i> Uber</h2>
+                <button class="btn btn-primary">Login</button>
+            </div>
+            <div class="col text-center">
+                <h2> <i class="fab fa-lyft"></i> Lyft</h2>
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </section>
+
+        <section class="form-section" id"formContainer">
+            <form class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for"address">Address:</label>
+                        <input type="text" class="form-control" id="address"  required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for"city">City:</label>
+                        <input type="text" class="form-control" id="city"  required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="state">State:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="state"required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="destAddress">Destination Address:</label>
+                        <input type="text" class="form-control" id="destAddress" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="destCity">Destination City:</label>
+                        <input type="text" class="form-control" id="destCity" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="destState">Destination State</label>
+                        <input type="text" class="form-control" id="destState" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="currentLocation">Use Current Location</button>
+                <button class="btn btn-primary" type="submit" id="submit">Submit form</button>
+            </form>
+        </section>
+        <section>
+       
+        <section class="row chart-section">
+            <div class="chart-container col" style="position: relative; height:40vh; width:80vw">
+                <canvas id="line-chart"></canvas>
+            </div>
+            <p class="col"> 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore 
+                magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                consequat. Duis aute irure dolor in reprehenderit in voluptate 
+                velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt 
+                in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+
+        <section class="row chart-section">
+            <p class="col"> 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore 
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate 
+                    velit esse cillum dolore eu fugiat nulla pariatur. 
+                    Excepteur sint occaecat cupidatat non proident, sunt 
+                    in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            <div class="chart-container col" style="position: relative; height:40vh; width:80vw">
+                <canvas id="dough-chart"></canvas>
+            </div>
+        </section>
+
+        <!--<section class="row chart-section">
+            <img src = "../assets/images/placeholder-2.jpg" id="img-footer" class="col">
+        </section>-->
+             <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Ride Type</th>
+                    <th scope="col">Est Cost</th>
+                    <th scope="col">Est Distance</th>
+                    <th scope="col">Est Pickup</th>
+                    </tr>
+                </thead>
+                <tbody id="lyftDetails"></tbody>
+            </table>
+        </section>
+    </main>
+    <script src="assets/javascript/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+    <script src="assets/javascript/charts.js"></script>
+</body>
+</html>
