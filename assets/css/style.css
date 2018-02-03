@@ -21,6 +21,10 @@ button {
    border-color: #343a40!important;
 }
 
+button:hover {
+    background-color: #5d6872!important;
+}
+
 canvas {
     background-color: #343a40!important;
 }
