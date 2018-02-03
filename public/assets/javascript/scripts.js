@@ -85,7 +85,10 @@
                   headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='}})
             .done(function(response){
               console.log("Below are the results coming back from Lyft: ");
+              getResponseData(response);
               parseLyftData(response);
+              apples(response)(response);
+              // Place a chart function here
             })
           })
           .fail(function(error){
@@ -100,9 +103,90 @@
                 .done(function(response){
                   console.log("Below are the results coming back from Uber: ")
                   console.log(response)
+                  apples(response)(response);
+                  // Place a chart function here
+
                 }).fail(function(error){
                   console.log(error)
                 });
                     }
       $("#submit").on("click", submitInfo);
       $("#currentLocation").on("click", getCurrentLocation)
+
+      function getResponseData(response) {
+        console.log("Got response in chart function");
+        return function chartTest(response) {
+            let labels = [];
+            for(var i = 0; i < response.length; i++) {
+                labels.push("Driver " + response[i] + 1);
+            }
+    
+            let costData = [];
+            for(var i = 0; i < response.length; i++) {
+                costData.push(response[i].estimated_cost_cents_max);
+            }
+    
+            const lineChart = document.getElementById('line-chart').getContext('2d');
+            const textLineChart = new Chart(lineChart, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Placeholder Data Set",
+                        fill: false,
+                        lineTenstion: 0,
+                        borderColor: 'rgb(255, 255, 255)',
+                        data: costData,
+                    }
+                    // {
+                    //     label: "2nd Data Set",
+                    //     fill: false,
+                    //     backgroundColor: 'rgb(0, 255, 0)',
+                    //     borderColor: 'rgb(0, 0, 255)',
+                    //     data: [0, 5, 25, 25, 20, 30, 35],
+                    // }       
+                    ]}
+            });
+        }
+    }
+
+    function apples(response){
+      console.log("Got response in chart function");
+        return function chartTest(response) {
+            console.log(response);
+            let labels = [];
+            for(var i = 0; i < response.cost_estimates.length; i++) {
+                labels.push("Driver " + (i + 1));
+            }
+            console.log(labels);
+    
+            let costData = [];
+            for(var i = 0; i < response.cost_estimates.length; i++) {
+                costData.push(response.cost_estimates[i].estimated_cost_cents_max);
+            }
+            console.log(costData);
+    
+            const lineChart = document.getElementById('line-chart').getContext('2d');
+            const textLineChart = new Chart(lineChart, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Placeholder Data Set",
+                        fill: false,
+                        lineTenstion: 0,
+                        borderColor: 'rgb(255, 255, 255)',
+                        data: costData,
+                    }
+                    // {
+                    //     label: "2nd Data Set",
+                    //     fill: false,
+                    //     backgroundColor: 'rgb(0, 255, 0)',
+                    //     borderColor: 'rgb(0, 0, 255)',
+                    //     data: [0, 5, 25, 25, 20, 30, 35],
+                    // }       
+                    ]}
+            });
+            console.log(textLineChart);
+        }
+    }
