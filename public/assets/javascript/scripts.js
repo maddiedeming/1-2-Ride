@@ -53,17 +53,25 @@ function parseLyftData(data){
 }
 function submitInfo(){
   event.preventDefault();
-  let address = replaceSpaces($("#address").val());
-  let city = replaceSpaces($("#city").val().trim());
-  let state = $("#state").val().trim();
-  let lat = 0;
-  let lng = 0;
-  let destAddress = replaceSpaces($("#destAddress").val());
-  let destCity = replaceSpaces($("#destCity").val());
-  let destState = $("#destState").val();
+  const address = replaceSpaces($("#address").val());
+  const city = replaceSpaces($("#city").val().trim());
+  const state = $("#state").val().trim();
+  const lat = 0;
+  const lng = 0;
+  const destAddress = replaceSpaces($("#destAddress").val());
+  const destCity = replaceSpaces($("#destCity").val());
+  const destState = $("#destState").val();
+  costComparison(address, city, state, destAddress, destCity, destState);
+  seatComparison(address, city, state);
+}
 
 
-//Lyft Begins
+
+
+
+
+// Function contains ajax requests for cost comparison Data
+function costComparison(address, city, state, destAddress, destCity, destState) {
   $.ajax({
     url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
     type:"GET",  
@@ -79,7 +87,6 @@ function submitInfo(){
       $.ajax({
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destAddress + ',+' + destCity + ',+' + destState + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
         type:"GET",
-  
       })
       .done(function(response){
         destLat = response.results[0].geometry.location.lat;
@@ -93,13 +100,11 @@ function submitInfo(){
     
         })
         .done(function(response){
-          console.log("Below are the results coming back from Lyft: ");
           parseLyftData(response);
           let lyftData = lyftLineChart(response);
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
-          console.log(lyftCostData);
           //Uber Begins
           
           $.ajax({
@@ -132,9 +137,6 @@ function submitInfo(){
         
             })
               .done(function(response){
-                console.log("Below are the results coming back from Uber: ")
-                console.log("Uberdata" + response);
-                console.log("lyftdata: " + lyftCostData);
                 let uberData = uberLineChart(response);
                 LineChartRender(lyftLabels, lyftDataSet, uberData);
 
@@ -145,10 +147,86 @@ function submitInfo(){
             })
             })
           })
-      
       })
     })
   })
+}
+
+
+
+
+
+function seatComparison(address, city, state) {
+  $.ajax({
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+    type:"GET",  
+    })
+    .done(function(response){
+      startLat = response.results[0].geometry.location.lat;
+      startLng = response.results[0].geometry.location.lng;
+    })
+    .fail(function(error){
+      console.log(error)
+    })
+    .then(function(){
+      // LYFT Call
+      $.ajax({
+        url: 'https://api.lyft.com/v1/ridetypes?lat=' +startLat + '&lng=' + startLng, 
+        type:"GET",
+        headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='},
+  
+      })
+      .done(function(response){
+        lyftDoughnutChart(response);
+        
+        
+
+
+
+
+        // parseLyftData(response);
+        // let lyftData = lyftLineChart(response);
+        // let lyftDataSet = lyftData[0];
+        // let lyftLabels = lyftData[1];
+        // let lyftCostData = [lyftLabels, lyftDataSet];
+        // console.log(lyftCostData);
+
+
+        //Uber Begins
+        
+        $.ajax({
+          url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+          type:"GET",
+    
+        })
+          .done(function(response){
+            startLat = response.results[0].geometry.location.lat;
+            startLng = response.results[0].geometry.location.lng;
+          })
+            .fail(function(error){
+            console.log(error)
+          })
+            .then(function(){
+              $.ajax({
+              url: 'https://api.uber.com/v1.2/products?latitude=' + startLat + '&longitude=' + startLng, 
+              type: 'GET',
+              headers:{Authorization: 'Token YEEveIYDU-uU4BRcgORqnvoLRtrCtQDzc0yvbRVs'},
+        
+            })
+              .done(function(response){
+                console.log("Apples ")
+                console.log("Uberdata" + response);
+                uberDoughnutChart(response);
+                // LineChartRender(lyftLabels, lyftDataSet, uberData);
+
+                
+              })
+            .fail(function(error){
+              console.log(error)
+            })
+          })
+        })
+      })
 }
 
 
