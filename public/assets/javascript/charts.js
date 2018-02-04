@@ -72,7 +72,7 @@ function LineChartRender(lyftLabels, lyftDataSet, uberData){
 
 
 
-
+// Add a doughnut Chart for Seat number comparison
 
 
 

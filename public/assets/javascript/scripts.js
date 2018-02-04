@@ -100,6 +100,8 @@ function submitInfo(){
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
           console.log(lyftCostData);
+          //Uber Begins
+          
           $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
             type:"GET",
