@@ -178,6 +178,7 @@ function seatComparison(address, city, state) {
       })
       .done(function(response){
         lyftDoughnutChart(response);
+
         
         
 
@@ -217,7 +218,7 @@ function seatComparison(address, city, state) {
                 console.log("Apples ")
                 console.log("Uberdata" + response);
                 uberDoughnutChart(response);
-                // LineChartRender(lyftLabels, lyftDataSet, uberData);
+                doughnutChartRender (lyftSeatData, uberSeatData)
 
                 
               })

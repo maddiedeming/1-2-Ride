@@ -130,36 +130,41 @@ function uberDoughnutChart(response) {
 
     let uberSeatKeys =[];
     Object.keys(uberSeatsCounted).forEach((value) => {
-        value = "Lyft " + value + " Seats";
+        value = "Uber " + value + " Seats";
         uberSeatKeys.push(value);
     });
 
-    lyftSeatData = [uberSeatKeys, seatValuesArray];
+    uberSeatData = [uberSeatKeys, seatValuesArray];
     console.log("Uber seat Data: " + uberSeatData);
     return uberSeatData;
 }
 
 
 
-
-function doughnutChartRender (lyftSeatsCounted) {
+function doughnutChartRender (lyftSeatData, uberSeatData) {
     const doughnutChart = document.getElementById("dough-chart");
+    const combinedKeyLabels = lyftSeatData[0].join(",") + uberSeatData[0].join(",");
+    const combinedKeyLabelsArray = combinedKeyLabels.split(",");
+    // Combinedseatvals is making 3, 22, 2
+    const combinedSeatValues = lyftSeatData[1].join(" ") + ", " +uberSeatData[1].join(" ");
+    const combinedSeatsArray = combinedSeatValues.split(" ");
+    alert("lyftseatdata [1] " + lyftSeatData[1])
+    alert("uberseatdata [1] " + uberSeatData[1])
+    alert("comb seats " + combinedSeatsArray);
     const textDoughnutChart = new Chart(doughnutChart, {
         type: 'doughnut',
         data: {
             datasets: [{
                 label: "red",
                 fill: true,
-                backgroundColor: ["rgb(250, 0, 0)", "rgb(0, 0, 250)"],
-                data: [/*insert seat value arrays here*/]
+                backgroundColor: ["rgb(250, 0, 0)", "rgb(0, 0, 250)", "rgb(0, 250, 250)", "rgb(250, 0, 250)", "rgb(0, 0, 0)" ],
+                data: combinedSeatsArray
             }],
             
             
             // These labels appear in the legend and in the tooltips when hovering different arcs
             labels: [
-                'Bananas',
-                'Yellow',
-                'Blue'
+                combinedKeyLabelsArray
             ]
         },
     });
