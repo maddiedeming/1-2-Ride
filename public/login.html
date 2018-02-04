@@ -17,7 +17,7 @@
                         <a class="nav-link homePage" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="bio.html">Project Creators</a>
+                        <a class="nav-link" href="bio.html">About Us</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link loginLink" href="#">Login<span class="sr-only">(current)</span></a>
@@ -47,7 +47,7 @@
                                     <label>Password</label>
                                     <input type="password" class="form-control" id="newPassword">
                                 </div>
-                                <p class="invisible">Placeholder</p>
+                                <span id="signUpError" class="errorMessage invisible badge badge-danger" style="width:100%;">Warning</span>
                                 <button id="newUser" type="submit" class="btn btn-primary btn-block mt-2">Create Account</button>
                             </form>
                         </div>
@@ -62,6 +62,7 @@
                                     <input type="password" class="form-control" id="inputPassword" placeholder="Enter Password">
                                 </div>
                                 <a href="#" id="forgotPassword" data-toggle="modal" data-target="#forgotPasswordForm"><p>Forgot password?</p></a>
+                                <span id="loginError" class="errorMessage invisible badge badge-danger" style="width:100%;">Warning</span>
                                 <button id="loginSubmit" type="submit" class="btn btn-primary btn-block mt-2">Submit</button>
                             </form>
                         </div>
@@ -78,6 +79,7 @@
                                     <label>Email</label>
                                     <input type="email" class="form-control" id="forgotPasswordEmail" placeholder="Enter email">
                                 </div>
+                                <span id="forgotPasswordError" class="errorMessage invisible badge badge-danger" style="width:100%;">Warning</span>
                                 <button id="forgotPasswordSubmit" type="submit" class="btn btn-primary btn-block mt-2">Submit</button>
                             </form>
                         </div>
