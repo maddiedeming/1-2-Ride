@@ -1,0 +1,20 @@
+{
+  "name": "1-2-Ride",
+  "homepage": "https://github.com/maddiedeming/1-2-Ride",
+  "authors": [
+    "crystalmilliken <crystal@millikenconsulting.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jso": "^2.0.3"
+  }
+}

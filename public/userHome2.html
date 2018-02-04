@@ -25,7 +25,9 @@
       messagingSenderId: "232944570362"
     };
     firebase.initializeApp(config);
-  </script>
+  
+
+    </script>
     <title>1-2 Ride</title>
 </head>
 <body>
@@ -35,19 +37,28 @@
         <div id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link homePage" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="bio.html">About Us</a>
+                    <a class="nav-link" href="bio.html">Project Creators</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link loginLink" href="login.html">Login</a>
-                </li>                
+                
             </ul>
         </div>
     </nav>
 
     <main class="container">
+        <section class="row">
+            <div class="col text-center">
+                <h2> <i class="fab fa-uber"></i> Uber</h2>
+                <button class="btn btn-primary">test</button>
+            </div>
+            <div class="col text-center">
+                <h2> <i class="fab fa-lyft"></i> Lyft</h2>
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </section>
+
         <section class="form-section" id"formContainer">
             <form class="form-group">
                 <div class="form-row">
@@ -117,21 +128,47 @@
                 <canvas id="dough-chart"></canvas>
             </div>
         </section>
+
+        <!--<section class="row chart-section">
+            <img src = "../assets/images/placeholder-2.jpg" id="img-footer" class="col">
+        </section>-->
              <table class="table">
                 <thead>
                     <tr>
                     <th scope="col">Ride Type</th>
                     <th scope="col">Est Cost</th>
-                    <th scope="col">Est Distance</th>
-                    <th scope="col">Est Pickup</th>
+                    <th scope="col">Est test2</th>
+                    <th scope="col">Est test</th>
                     </tr>
                 </thead>
                 <tbody id="lyftDetails"></tbody>
             </table>
         </section>
+        <button id="test2">test</button>
     </main>
-    <script src="assets/javascript/scripts.js"></script>
+    <script type="text/javascript" src="bower_components/jso/build/jso.js"></script>
+    <!--<script src="assets/javascript/userScript.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
     <script src="assets/javascript/charts.js"></script>
+    <script>
+
+    function getUrlParams( prop ) {
+    var params = {};
+    var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
+    var definitions = search.split( '&' );
+    var String1=search.substring(search.indexOf("access_token=")+13,search.indexOf("&"));
+        $.ajax({url: 'https://api.uber.com/v1.2/me?latitude=37.7759792&longitude=-122.41823&access_token=' + String1, 
+                type: 'GET'
+            })
+                .done(function(response){
+                  console.log("Below are the results coming back from Uber: ")
+                  console.log(response)
+                }).fail(function(error){
+                  console.log(error)
+                });
+}
+$("#test2").on("click", getUrlParams)
+    </script>
+    <script src="assets/javascript/userScript.js"></script>
 </body>
 </html>
