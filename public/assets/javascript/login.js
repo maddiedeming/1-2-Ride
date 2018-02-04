@@ -42,6 +42,7 @@ var forgotPasswordError = $("#forgotPasswordError");
 var updateAccountError = $("#updateAccountError");
 var loginError = $("#loginError");
 var signUpError = $("#signUpError");
+var gearMenu = $("#gearMenu");
 // Initial Page Load
 errorMessageDisplay.addClass("invisible");
 errorMessageDisplay.text("");
@@ -58,6 +59,7 @@ firebase.auth().onAuthStateChanged(function(user){
         firstNameDisplay.val(firstName);
         lastNameDisplay.val(lastName);
         loginLink.text("Sign Out");
+        gearMenu.show();
         if(pageName[pageName.length - 1] === "index.html"){
             location.href="index2.html";
         }
@@ -65,6 +67,7 @@ firebase.auth().onAuthStateChanged(function(user){
     else{
         loginLink.text("Login");
         homePage.attr("href","index.html");
+        gearMenu.hide();
         if(pageName[pageName.length - 1] === "index2.html"){
             location.href="index.html";
         }
