@@ -96,7 +96,7 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
         $.ajax({
           url: 'https://api.lyft.com/v1/cost?start_lat=' +startLat + '&start_lng=' + startLng + "&end_lat=" + destLat + "&end_lng=" + destLng, 
           type:"GET",
-          headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='},
+          headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
     
         })
         .done(function(response){
@@ -105,8 +105,8 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
-          //Uber Begins
-          
+
+          //Uber Begins          
           $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
             type:"GET",
@@ -173,25 +173,11 @@ function seatComparison(address, city, state) {
       $.ajax({
         url: 'https://api.lyft.com/v1/ridetypes?lat=' +startLat + '&lng=' + startLng, 
         type:"GET",
-        headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='},
+        headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
   
       })
       .done(function(response){
         lyftDoughnutChart(response);
-
-        
-        
-
-
-
-
-        // parseLyftData(response);
-        // let lyftData = lyftLineChart(response);
-        // let lyftDataSet = lyftData[0];
-        // let lyftLabels = lyftData[1];
-        // let lyftCostData = [lyftLabels, lyftDataSet];
-        // console.log(lyftCostData);
-
 
         //Uber Begins
         

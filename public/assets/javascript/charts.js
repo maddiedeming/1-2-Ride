@@ -161,8 +161,6 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
                 data: combinedSeatsArray
             }],
             
-            
-            // These labels appear in the legend and in the tooltips when hovering different arcs
             labels: [
                 combinedKeyLabelsArray
             ]
