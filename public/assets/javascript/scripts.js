@@ -1,85 +1,86 @@
-//below funtion takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) 
+//below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
   toBeReplaced = toBeReplaced.replace(/ /g,"+");
   return toBeReplaced;
 }
 //below function uses the geolocation function from the browser and returns the lat/long. It then populates the form accordingly, setting up 
-//for when the person adds destination address 
+//for when the person adds destination address --crystal
 function getCurrentLocation(){
- event.preventDefault();
+  event.preventDefault();
   if ("geolocation" in navigator) {
-      /* geolocation is available */
-      navigator.geolocation.getCurrentPosition(function(position) {
-        let lat = position.coords.latitude;
-        let lng = position.coords.longitude;
-        $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
+     /* geolocation is available */
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let lat = position.coords.latitude;
+      let lng = position.coords.longitude;
+      $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
         type:"GET"})
-        .done(function(results){
-          let currentAddress = results.results[0].address_components[0].long_name + " " + results.results[0].address_components[1].short_name;
-          let currentCity = results.results[0].address_components[2].short_name;
-          let currentState = results.results[0].address_components[5].short_name;
-          $("#address").val(currentAddress);
-          $("#city").val(currentCity);
-          $("#state").val(currentState);
-          })
-        .fail(function(err){console.log(err)})
+      .done(function(results){
+        let currentAddress = results.results[0].address_components[0].long_name + " " + results.results[0].address_components[1].short_name;
+        let currentCity = results.results[0].address_components[2].short_name;
+        let currentState = results.results[0].address_components[5].short_name;
+        $("#address").val(currentAddress);
+        $("#city").val(currentCity);
+        $("#state").val(currentState);
+      })
+      .fail(function(err){console.log(err)})
     });
-    } else {
-      /* geolocation IS NOT available */
-      //Add Module here to alert must enter address
-      console.log("not available")
-    }
+  }else{
+    /* geolocation IS NOT available */
+    //Add Module here to alert must enter address --crystal
+    console.log("not available")
+  }
 }
+//below function populates table with Uber data --crystal
+function populateUberData(response){
+  response.prices.forEach(function(element){
+    let newTr = $("<tr>");
+    let newRideTd = $("<td>");
+    let newEstCostTd = $("<td>");
+    let newEstDisTd = $("<td>");
+    let newArrivalTd = $("<td>");
+    let cost = element.estimate;
+    newRideTd.text(element.display_name);
+    newEstCostTd.text(cost);
+    newEstDisTd.text(element.distance);
+    newArrivalTd.text("Unavailable");
+    newTr.append(newRideTd);
+    newTr.append(newEstCostTd);
+    newTr.append(newEstDisTd);
+    newTr.append(newArrivalTd);
+    $("#lyftDetails").append(newTr);
+  })
+}
+//below function populates table with Lyft data --crystal
 function parseLyftData(data, start, end){
-    $.ajax({
+  $.ajax({
           url: 'https://api.lyft.com/v1/eta?lat=' +start + '&lng=' + end, 
           type:"GET",
           headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
   }).done(function(response){
-  let arrayOfETAs = response.eta_estimates;
-  let arrayOfRides = data.cost_estimates;
-  console.log(response);
-  let counter = 0;
-  arrayOfRides.forEach(function(i) {  
-  let newTr = $("<tr>");
-  let newRideTd = $("<td>");
-  let newEstCostTd = $("<td>");
-  let newEstDisTd = $("<td>");
-  let newArrivalTd = $("<td>");
-  let cost = i.estimated_cost_cents_max/100;
-      newRideTd.text(i.display_name);
-      newEstCostTd.text(`$${cost}`);
-      newEstDisTd.text(i.estimated_distance_miles);
-      newArrivalTd.text(response.eta_estimates[counter].eta_seconds)
-      newTr.append(newRideTd);
-      newTr.append(newEstCostTd);
-      newTr.append(newEstDisTd);
-      newTr.append(newArrivalTd);
-      $("#lyftDetails").append(newTr);
-      counter++;
-  });
-    })
-
-  
-// }
-// function getEtas(start, end){
-//   $.ajax({
-//           url: 'https://api.lyft.com/v1/eta?lat=' +start + '&lng=' + end, 
-//           type:"GET",
-//           headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
-//   }).done(function(response){
-//     let arrayOfETAs = response.eta_estimates;
-//     arrayOfETAs.forEach(function(i){
-//     console.log("the etas below are: ");console.log(i)
-//     let newArrivalTd = $("<td>");
-//     let newTr = $("<tr>");
-//     newArrivalTd.text(i.eta_seconds);
-//     newTr.append(newArrivalTd);
-//     $("#lyftDetails").append(newTr);
-//     })
-    
-//     })
- }
+      const arrayOfETAs = response.eta_estimates;
+      const arrayOfRides = data.cost_estimates;
+      let counter = 0;
+      arrayOfRides.forEach(function(i) {  
+        let newTr = $("<tr>");
+        let newRideTd = $("<td>");
+        let newEstCostTd = $("<td>");
+        let newEstDisTd = $("<td>");
+        let newArrivalTd = $("<td>");
+        let cost = i.estimated_cost_cents_max/100;
+        newRideTd.text(i.display_name);
+        newEstCostTd.text(`$${cost}`);
+        newEstDisTd.text(i.estimated_distance_miles);
+        newArrivalTd.text(response.eta_estimates[counter].eta_seconds/60 + " Minutes")
+        newTr.append(newRideTd);
+        newTr.append(newEstCostTd);
+        newTr.append(newEstDisTd);
+        newTr.append(newArrivalTd);
+        $("#lyftDetails").append(newTr);
+        counter++;
+      });
+   })
+}
+ //Below extracts Dom info, sends to calls --crystal
 function submitInfo(){
   event.preventDefault();
   const address = replaceSpaces($("#address").val());
@@ -93,11 +94,6 @@ function submitInfo(){
   costComparison(address, city, state, destAddress, destCity, destState);
   seatComparison(address, city, state);
 }
-
-
-
-
-
 
 // Function contains ajax requests for cost comparison Data
 function costComparison(address, city, state, destAddress, destCity, destState) {
@@ -137,7 +133,6 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
 
-          //Uber Begins          
           $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
             type:"GET",
@@ -170,9 +165,9 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
               .done(function(response){
                 let uberData = uberLineChart(response);
                 LineChartRender(lyftLabels, lyftDataSet, uberData);
-
-                
-              })
+                //below function is fired -> populates table with uber data-crystal
+                populateUberData(response);
+                })
             .fail(function(error){
               console.log(error)
             })
@@ -182,9 +177,6 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
     })
   })
 }
-
-
-
 
 
 function seatComparison(address, city, state) {
@@ -200,7 +192,6 @@ function seatComparison(address, city, state) {
       console.log(error)
     })
     .then(function(){
-      // LYFT Call
       $.ajax({
         url: 'https://api.lyft.com/v1/ridetypes?lat=' +startLat + '&lng=' + startLng, 
         type:"GET",
@@ -209,9 +200,6 @@ function seatComparison(address, city, state) {
       })
       .done(function(response){
         lyftDoughnutChart(response);
-
-        //Uber Begins
-        
         $.ajax({
           url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
           type:"GET",
@@ -232,12 +220,8 @@ function seatComparison(address, city, state) {
         
             })
               .done(function(response){
-                console.log("Apples ")
-                console.log("Uberdata" + response);
                 uberDoughnutChart(response);
                 doughnutChartRender (lyftSeatData, uberSeatData)
-              
-                
               })
             .fail(function(error){
               console.log(error)
