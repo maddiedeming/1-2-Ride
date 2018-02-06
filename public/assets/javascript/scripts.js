@@ -30,27 +30,56 @@ function getCurrentLocation(){
       console.log("not available")
     }
 }
-function parseLyftData(data){
+function parseLyftData(data, start, end){
+    $.ajax({
+          url: 'https://api.lyft.com/v1/eta?lat=' +start + '&lng=' + end, 
+          type:"GET",
+          headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
+  }).done(function(response){
+  let arrayOfETAs = response.eta_estimates;
   let arrayOfRides = data.cost_estimates;
-  console.log(arrayOfRides);
-  arrayOfRides.forEach(function(i) {
-      let newTr = $("<tr>");
+  console.log(response);
+  let counter = 0;
+  arrayOfRides.forEach(function(i) {  
+  let newTr = $("<tr>");
   let newRideTd = $("<td>");
   let newEstCostTd = $("<td>");
   let newEstDisTd = $("<td>");
   let newArrivalTd = $("<td>");
   let cost = i.estimated_cost_cents_max/100;
-      console.log(i)
       newRideTd.text(i.display_name);
       newEstCostTd.text(`$${cost}`);
       newEstDisTd.text(i.estimated_distance_miles);
+      newArrivalTd.text(response.eta_estimates[counter].eta_seconds)
       newTr.append(newRideTd);
       newTr.append(newEstCostTd);
       newTr.append(newEstDisTd);
+      newTr.append(newArrivalTd);
       $("#lyftDetails").append(newTr);
+      counter++;
   });
+    })
+
   
-}
+// }
+// function getEtas(start, end){
+//   $.ajax({
+//           url: 'https://api.lyft.com/v1/eta?lat=' +start + '&lng=' + end, 
+//           type:"GET",
+//           headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
+//   }).done(function(response){
+//     let arrayOfETAs = response.eta_estimates;
+//     arrayOfETAs.forEach(function(i){
+//     console.log("the etas below are: ");console.log(i)
+//     let newArrivalTd = $("<td>");
+//     let newTr = $("<tr>");
+//     newArrivalTd.text(i.eta_seconds);
+//     newTr.append(newArrivalTd);
+//     $("#lyftDetails").append(newTr);
+//     })
+    
+//     })
+ }
 function submitInfo(){
   event.preventDefault();
   const address = replaceSpaces($("#address").val());
@@ -79,6 +108,7 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
     .done(function(response){
       startLat = response.results[0].geometry.location.lat;
       startLng = response.results[0].geometry.location.lng;
+      
     })
     .fail(function(error){
       console.log(error)
@@ -91,6 +121,7 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
       .done(function(response){
         destLat = response.results[0].geometry.location.lat;
         destLng = response.results[0].geometry.location.lng;
+        
       })
       .then(function(){
         $.ajax({
@@ -100,7 +131,7 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
     
         })
         .done(function(response){
-          parseLyftData(response);
+          parseLyftData(response, startLat, destLng);
           let lyftData = lyftLineChart(response);
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
@@ -205,7 +236,7 @@ function seatComparison(address, city, state) {
                 console.log("Uberdata" + response);
                 uberDoughnutChart(response);
                 doughnutChartRender (lyftSeatData, uberSeatData)
-
+              
                 
               })
             .fail(function(error){
