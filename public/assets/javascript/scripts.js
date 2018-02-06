@@ -30,30 +30,7 @@ function getCurrentLocation(){
   }
   function error(err){
      $('#geolocationModal').modal('show');
-      console.log(err)
   }
-  // if ("geolocation" in navigator) {
-  //    /* geolocation is available */
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     let lat = position.coords.latitude;
-  //     let lng = position.coords.longitude;
-  //     $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
-  //       type:"GET"})
-  //     .done(function(results){
-  //       let currentAddress = results.results[0].address_components[0].long_name + " " + results.results[0].address_components[1].short_name;
-  //       let currentCity = results.results[0].address_components[2].short_name;
-  //       let currentState = results.results[0].address_components[5].short_name;
-  //       $("#address").val(currentAddress);
-  //       $("#city").val(currentCity);
-  //       $("#state").val(currentState);
-  //     })
-  //   });
-  // }else if(!navigator.geolocation){
-  //   /* geolocation IS NOT available */
-  //   //Add Module here to alert must enter address --crystal
-  //   $('#geoloctionModal').modal('show');
-  //   console.log("couldn;t ")
-  // }
 }
 //below function populates table with Uber data --crystal
 function populateUberData(response){
@@ -95,7 +72,7 @@ function parseLyftData(data, start, end){
         newRideTd.text(i.display_name);
         newEstCostTd.text(`$${cost}`);
         newEstDisTd.text(i.estimated_distance_miles);
-        newArrivalTd.text(response.eta_estimates[counter].eta_seconds/60 + " Minutes")
+        newArrivalTd.text(response.eta_estimates[counter].eta_seconds/60 + " Minutes");
         newTr.append(newRideTd);
         newTr.append(newEstCostTd);
         newTr.append(newEstDisTd);
@@ -129,10 +106,9 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
     .done(function(response){
       startLat = response.results[0].geometry.location.lat;
       startLng = response.results[0].geometry.location.lng;
-      
     })
     .fail(function(error){
-      console.log(error)
+      console.log(error);
     })
     .then(function(){
       $.ajax({
