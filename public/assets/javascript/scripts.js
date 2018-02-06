@@ -1,3 +1,4 @@
+
 //below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
   toBeReplaced = toBeReplaced.replace(/ /g,"+");
@@ -7,9 +8,12 @@ function replaceSpaces(toBeReplaced){
 //for when the person adds destination address --crystal
 function getCurrentLocation(){
   event.preventDefault();
-  if ("geolocation" in navigator) {
-     /* geolocation is available */
-    navigator.geolocation.getCurrentPosition(function(position) {
+  var options = {
+      enableHighAccuracy: true,
+      timeout: 10000
+  };
+  navigator.geolocation.getCurrentPosition(success, error, options);
+  function success(position){
       let lat = position.coords.latitude;
       let lng = position.coords.longitude;
       $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
@@ -21,14 +25,35 @@ function getCurrentLocation(){
         $("#address").val(currentAddress);
         $("#city").val(currentCity);
         $("#state").val(currentState);
-      })
-      .fail(function(err){console.log(err)})
-    });
-  }else{
-    /* geolocation IS NOT available */
-    //Add Module here to alert must enter address --crystal
-    console.log("not available")
+      });
+    
   }
+  function error(err){
+     $('#geolocationModal').modal('show');
+      console.log(err)
+  }
+  // if ("geolocation" in navigator) {
+  //    /* geolocation is available */
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     let lat = position.coords.latitude;
+  //     let lng = position.coords.longitude;
+  //     $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
+  //       type:"GET"})
+  //     .done(function(results){
+  //       let currentAddress = results.results[0].address_components[0].long_name + " " + results.results[0].address_components[1].short_name;
+  //       let currentCity = results.results[0].address_components[2].short_name;
+  //       let currentState = results.results[0].address_components[5].short_name;
+  //       $("#address").val(currentAddress);
+  //       $("#city").val(currentCity);
+  //       $("#state").val(currentState);
+  //     })
+  //   });
+  // }else if(!navigator.geolocation){
+  //   /* geolocation IS NOT available */
+  //   //Add Module here to alert must enter address --crystal
+  //   $('#geoloctionModal').modal('show');
+  //   console.log("couldn;t ")
+  // }
 }
 //below function populates table with Uber data --crystal
 function populateUberData(response){
