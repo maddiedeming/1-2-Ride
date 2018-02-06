@@ -83,7 +83,7 @@
           .then(function(){
             $.ajax({url: 'https://api.lyft.com/v1/cost?start_lat=' +startLat + '&start_lng=' + startLng + "&end_lat=" + destLat + "&end_lng=" + destLng, 
                   type:"GET",
-                  headers:{'Authorization': 'Bearer cCua1E9wIl6vB0YF61xLMi8DnUor7q4LyzjKwKclz4bIOeN6czq2YTSPos6t5Qgt2WRtpLdRYQz8fWalrvXyuUjkaFINNt3pzHkEpAyLSSaHBGcXcwlw2RM='}})
+                  headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='}})
             .done(function(response){
               console.log("Below are the results coming back from Lyft: ");
               parseLyftData(response);
@@ -95,7 +95,7 @@
         })
       //Lyft Ends
       //Uber Call
-        $.ajax({url: 'https://api.uber.com/v1.2/products?latitude=37.7752315&longitude=-122.418075', 
+        $.ajax({url: 'https://api.uber.com/v1.2/products', 
                 type: 'GET',
                 headers:{Authorization: 'Token YEEveIYDU-uU4BRcgORqnvoLRtrCtQDzc0yvbRVs'}})
                 .done(function(response){
