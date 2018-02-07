@@ -139,6 +139,10 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
             type:"GET",
       
           })
+          .then(function(){
+            $.ajax({url: 'https://api.lyft.com/v1/cost?start_lat=' +startLat + '&start_lng=' + startLng + "&end_lat=" + destLat + "&end_lng=" + destLng, 
+                  type:"GET",
+                  headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='}})
             .done(function(response){
               startLat = response.results[0].geometry.location.lat;
               startLng = response.results[0].geometry.location.lng;
@@ -229,13 +233,17 @@ function seatComparison(address, city, state) {
             })
           })
         })
-      })
-}
-
-
-
-
-
-$("#submit").on("click", submitInfo);
-$("#currentLocation").on("click", getCurrentLocation)
-
+      //Lyft Ends
+      //Uber Call
+        $.ajax({url: 'https://api.uber.com/v1.2/products', 
+                type: 'GET',
+                headers:{Authorization: 'Token YEEveIYDU-uU4BRcgORqnvoLRtrCtQDzc0yvbRVs'}})
+                .done(function(response){
+                  console.log("Below are the results coming back from Uber: ")
+                  console.log(response)
+                }).fail(function(error){
+                  console.log(error)
+                });
+                    }
+      $("#submit").on("click", submitInfo);
+      $("#currentLocation").on("click", getCurrentLocation)
