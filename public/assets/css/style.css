@@ -36,5 +36,11 @@ canvas {
 .bio-content img, p{
     float:left;
 }
-
+.table th{
+    font-size:15px;
+}
+.table td{
+    font-size: 10px;
+    padding-top: 0em;
+}
 
