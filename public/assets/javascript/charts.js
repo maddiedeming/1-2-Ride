@@ -143,14 +143,13 @@ function uberDoughnutChart(response) {
 
 function doughnutChartRender (lyftSeatData, uberSeatData) {
     const doughnutChart = document.getElementById("dough-chart");
-    const combinedKeyLabels = lyftSeatData[0].join(",") + uberSeatData[0].join(",");
-    const combinedKeyLabelsArray = combinedKeyLabels.split(",");
-    // Combinedseatvals is making 3, 22, 2
-    const combinedSeatValues = lyftSeatData[1].join(" ") + ", " +uberSeatData[1].join(" ");
+    const combinedKeyLabels = lyftSeatData[0] + ", " + uberSeatData[0];
+    const demo = combinedKeyLabels.split(",");
+    alert("Labels Array: " + combinedKeyLabels);
+    console.log(combinedKeyLabels)
+    // Combinedseatvals is making 3 2, 2 2
+    const combinedSeatValues = lyftSeatData[1].join(" ") + " " +uberSeatData[1].join(" ");
     const combinedSeatsArray = combinedSeatValues.split(" ");
-    alert("lyftseatdata [1] " + lyftSeatData[1])
-    alert("uberseatdata [1] " + uberSeatData[1])
-    alert("comb seats " + combinedSeatsArray);
     const textDoughnutChart = new Chart(doughnutChart, {
         type: 'doughnut',
         data: {
@@ -162,7 +161,7 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
             }],
             
             labels: [
-                combinedKeyLabelsArray
+                combinedKeyLabels
             ]
         },
     });
