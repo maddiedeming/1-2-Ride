@@ -142,7 +142,6 @@ function uberDoughnutChart(response) {
 
 function doughnutChartRender (lyftSeatData, uberSeatData) {
     const doughnutChart = document.getElementById("dough-chart");
-    alert(lyftSeatData[0]);
     let combinedKeyLabels = [];
     for(var i = 0; i <= lyftSeatData[0].length; i++) {
         let indexValue = lyftSeatData[0].shift();
