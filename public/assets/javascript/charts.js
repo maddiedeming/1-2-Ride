@@ -92,14 +92,11 @@ function lyftDoughnutChart(response) {
 
     let lyftSeatKeys =[];
     Object.keys(lyftSeatsCounted).forEach((value) => {
-        value =  "Lyft" + value + "Seats" ;
+        value =  "Lyft " + value + " Seats" ;
         valueStr = value.toString();
         lyftSeatKeys.push(valueStr);
     });
-    console.log(lyftSeatKeys);
-
     lyftSeatData = [lyftSeatKeys, seatValuesArray];
-    console.log(lyftSeatData);
     return lyftSeatData;
 }
 
@@ -138,7 +135,6 @@ function uberDoughnutChart(response) {
     });
 
     uberSeatData = [uberSeatKeys, seatValuesArray];
-    console.log("Uber seat Data: " + uberSeatData);
     return uberSeatData;
 }
 
@@ -148,7 +144,6 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
     const doughnutChart = document.getElementById("dough-chart");
     alert(lyftSeatData[0]);
     let combinedKeyLabels = [];
-    console.log(lyftSeatData[0]);
     for(var i = 0; i <= lyftSeatData[0].length; i++) {
         let indexValue = lyftSeatData[0].shift();
         combinedKeyLabels.push(indexValue);
@@ -157,8 +152,6 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
         let indexValue = uberSeatData[0].shift();
         combinedKeyLabels.push(indexValue);
     }
-    alert("Labels Array: " + combinedKeyLabels);
-    console.log(combinedKeyLabels)
     const combinedSeatValues = lyftSeatData[1].join(" ") + " " +uberSeatData[1].join(" ");
     const combinedSeatsArray = combinedSeatValues.split(" ");
     const textDoughnutChart = new Chart(doughnutChart, {
