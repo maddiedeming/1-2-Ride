@@ -17,12 +17,12 @@ form {
 }
 
 button {
-   background-color: #343a40!important;
-   border-color: #343a40!important;
+   background-color: #343a40;
+   border-color: #343a40;
 }
 
-button:hover {
-    background-color: #5d6872!important;
+.btn:hover {
+    background-color: #5d6872;
 }
 
 canvas {
@@ -58,4 +58,12 @@ canvas {
 
 .nav-item a{
     color:white;
+}
+
+#btn-uber{
+    background-color:black;
+}
+
+#btn-lyft{
+    background-color:#ff00bf;
 }

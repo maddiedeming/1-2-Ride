@@ -158,3 +158,44 @@
 [info] i  hosting: Serving hosting files from: public
 [info] +  hosting: Local server: http://127.0.0.1:8080
 
+[debug] [2018-02-08T01:08:22.278Z] ----------------------------------------------------------------------
+[debug] [2018-02-08T01:08:22.282Z] Command:       C:\Applications\node.exe C:\Users\MaddieD\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve -p 8080 -o 127.0.0.1
+[debug] [2018-02-08T01:08:22.282Z] CLI Version:   3.17.4
+[debug] [2018-02-08T01:08:22.282Z] Platform:      win32
+[debug] [2018-02-08T01:08:22.282Z] Node Version:  v8.9.0
+[debug] [2018-02-08T01:08:22.283Z] Time:          Wed Feb 07 2018 20:08:22 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-08T01:08:22.283Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-08T01:08:22.295Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-08T01:08:22.296Z] > authorizing via signed-in user
+[debug] [2018-02-08T01:08:22.298Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-02-08T01:08:22.298Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/b4KHkHEyL0HOH6ufjRai_D59KhrWyFFg_YG-oxyih2c',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Feb 07 2018 20:08:22 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-08T01:08:22.576Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-08T01:08:22.617Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/one2ride-193914  
+  
+ Wed Feb 07 2018 20:08:22 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-08T01:08:23.084Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-08T01:08:23.087Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/one2ride-193914/tokens  
+  
+ Wed Feb 07 2018 20:08:23 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-08T01:08:23.525Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\MaddieD\Desktop\1-2-Ride'...
+[info] 
+[debug] [2018-02-08T01:08:23.534Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/one2ride-193914  
+  
+ Wed Feb 07 2018 20:08:23 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-08T01:08:23.907Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-08T01:08:23.908Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/232944570362/clients/_:getWebAppConfig  
+  
+ Wed Feb 07 2018 20:08:23 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-08T01:08:24.441Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://127.0.0.1:8080
+
