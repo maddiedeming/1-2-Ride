@@ -16,9 +16,10 @@ form {
     height: 300px;
 }
 
-button {
+.btn {
    background-color: #343a40;
    border-color: #343a40;
+   color:white;
 }
 
 .btn:hover {
@@ -27,6 +28,7 @@ button {
 
 canvas {
     background-color: #343a40!important;
+    border-radius: 25px;
 }
 .bio-content{
     margin-top:2em;
