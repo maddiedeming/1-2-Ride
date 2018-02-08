@@ -25,17 +25,19 @@ form {
     height: 300px;
 }
 
-button {
-   background-color: #343a40!important;
-   border-color: #343a40!important;
+.btn {
+   background-color: #343a40;
+   border-color: #343a40;
+   color:white;
 }
 
-button:hover {
-    background-color: #5d6872!important;
+.btn:hover {
+    background-color: #5d6872;
 }
 
 canvas {
     background-color: #343a40!important;
+    border-radius: 25px;
 }
 .bio-content{
     margin-top:2em;
@@ -67,4 +69,12 @@ canvas {
 
 .nav-item a{
     color:white;
+}
+
+#btn-uber{
+    background-color:black;
+}
+
+#btn-lyft{
+    background-color:#ff00bf;
 }
