@@ -50,7 +50,6 @@ errorMessageDisplay.text("");
 firebase.auth().onAuthStateChanged(function(user){
     var pageName = location.pathname.split('/');
     if(user){
-        homePage.attr("href","index2.html");
         savedEmail = user.email;
         displayEmail.val(savedEmail);
         var fullName = user.displayName.split(/\s+/);
@@ -60,17 +59,10 @@ firebase.auth().onAuthStateChanged(function(user){
         lastNameDisplay.val(lastName);
         loginLink.text("Sign Out");
         gearMenu.show();
-        if(pageName[pageName.length - 1] === "index.html"){
-            location.href="index2.html";
-        }
     }
     else{
         loginLink.text("Login");
-        homePage.attr("href","index.html");
         gearMenu.hide();
-        if(pageName[pageName.length - 1] === "index2.html"){
-            location.href="index.html";
-        }
     }
 });
 // Create Account
@@ -80,7 +72,6 @@ newUser.on("click", function(event){
     password = newPassword.val().trim();
     formControl.val("");
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
-        location.href="index2.html";
         errorMessageDisplay.addClass("invisible");
         errorMessageDisplay.text("");
     }).catch(function(error){
@@ -99,7 +90,6 @@ loginSubmit.on("click", function(event){
     password = inputPassword.val().trim();
     firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
         formControl.val("");
-        location.href="index2.html";
         errorMessageDisplay.addClass("invisible");
         errorMessageDisplay.text("");
     }).catch(function(error){

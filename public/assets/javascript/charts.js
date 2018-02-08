@@ -17,7 +17,7 @@ function lyftLineChart(response) {
         label: 'Lyft',
         fill: false,
         lineTenstion: 0,
-        backgroundColor: 'rgb(255, 255, 255)',
+        backgroundColor: 'rgb(73, 201, 255)',
         borderColor: 'rgb(255, 255, 255)',
         data: lyftCostData
     };
@@ -37,7 +37,7 @@ function uberLineChart(response) {
         label: 'Uber',
         fill: false,
         lineTenstion: 0,
-        backgroundColor: 'rgb(0, 255, 0)',
+        backgroundColor: 'rgb(255, 160, 150)',
         borderColor: 'rgb(0, 255, 0)',
         data: uberCostData
     };
@@ -159,7 +159,7 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
             datasets: [{
                 label: "red",
                 fill: true,
-                backgroundColor: ["rgb(250, 0, 0)", "rgb(0, 0, 250)", "rgb(0, 250, 250)", "rgb(250, 0, 250)", "rgb(0, 0, 0)" ],
+                backgroundColor: ["rgb(172, 212, 167)", "rgb(212, 167, 197)", "rgb(48, 158, 204)", "rgb(141, 189, 242)", "rgb(0, 0, 0)" ],
                 data: combinedSeatsArray
             }],
             

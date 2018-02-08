@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/typlate.css">
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!-- Bootstrap 4 -->
@@ -28,12 +29,12 @@
   </script>
     <title>1-2 Ride</title>
 </head>
-<body>
+<body class="background-color">
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
+    <nav class="navbar navbar-expand-sm justify-content-between">
         <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i> </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-dark navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto " style="margin-left:60%">
@@ -83,8 +84,8 @@
                         <input type="text" class="form-control" id="destState" required>
                     </div>
                 </div>
-                <button class="btn btn-primary" id="currentLocation">Use Current Location</button>
-                <button class="btn btn-primary" type="submit" id="submit">Submit form</button>
+                <button class="btn" id="currentLocation">Use Current Location</button>
+                <button class="btn" type="submit" id="submit">Submit form</button>
             </form>
         </section>
         <!--Modal for error when accessing geolocation-->
@@ -117,29 +118,9 @@
             <div class="chart-container col" style="position: relative; height:40vh; width:80vw">
                 <canvas id="line-chart"></canvas>
             </div>
-            <p class="col"> 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore 
-                magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                consequat. Duis aute irure dolor in reprehenderit in voluptate 
-                velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt 
-                in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
         </section>
 
         <section class="row chart-section">
-            <p class="col"> 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore 
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate 
-                    velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt 
-                    in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
             <div class="chart-container col" style="position: relative; height:40vh; width:80vw">
                 <canvas id="dough-chart"></canvas>
             </div>
