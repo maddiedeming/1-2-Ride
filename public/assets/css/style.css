@@ -30,7 +30,7 @@ form {
 /* canvas {
     background-color: #343a40!important;
     border-radius: 25px;
-}
+ } 
 
 .table th{
     font-size:15px;
@@ -42,13 +42,13 @@ form {
 
 .background-color{
     background-color: #31cea7;
-}
+}  */
 
 .navbar{
     /* background-color: #11365b; */
     /* background-color: #31cea7; */
-    /* background-color: #e16644;
-} */
+    background-color: #e16644;
+}
 
 .navbar a{
     color:white;
