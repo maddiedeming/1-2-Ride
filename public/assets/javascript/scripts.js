@@ -1,5 +1,5 @@
-
-//below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
+$("#carData").hide()
+// Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
   toBeReplaced = toBeReplaced.replace(/ /g,"+");
   return toBeReplaced;
@@ -32,7 +32,7 @@ function getCurrentLocation(){
      $('#geolocationModal').modal('show');
   }
 }
-//below function populates table with Uber data --crystal
+// Below function populates table with Uber data --crystal
 function populateUberData(response){
   response.prices.forEach(function(element){
     let newTr = $("<tr>");
@@ -52,7 +52,7 @@ function populateUberData(response){
     $("#lyftDetails").append(newTr);
   })
 }
-//below function populates table with Lyft data --crystal
+// Below function populates table with Lyft data --crystal
 function parseLyftData(data, start, end){
   $.ajax({
           url: 'https://api.lyft.com/v1/eta?lat=' +start + '&lng=' + end, 
@@ -82,9 +82,10 @@ function parseLyftData(data, start, end){
       });
    })
 }
- //Below extracts Dom info, sends to calls --crystal
+ // Below extracts Dom info, sends to calls --crystal
 function submitInfo(){
   event.preventDefault();
+  $("#carData").show();
   const address = replaceSpaces($("#address").val());
   const city = replaceSpaces($("#city").val().trim());
   const state = $("#state").val().trim();
