@@ -44,3 +44,18 @@ canvas {
     padding-top: 0em;
 }
 
+.background-color{
+    background-color: #31cea7;
+}
+
+.navbar{
+    background-color: #11365b;
+}
+
+.navbar a{
+    color:white;
+}
+
+.nav-item a{
+    color:white;
+}
