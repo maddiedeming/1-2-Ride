@@ -12,6 +12,15 @@ form {
     margin-top: 5%;
 }
 
+#line-chart {
+    position: absolute; top:0px; left:0px;
+
+}
+
+#dough-chart {
+    position: absolute; top:0px; left:0px;
+}
+
 #img-footer{
     height: 300px;
 }
