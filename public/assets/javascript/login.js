@@ -50,7 +50,6 @@ errorMessageDisplay.text("");
 firebase.auth().onAuthStateChanged(function(user){
     var pageName = location.pathname.split('/');
     if(user){
-        homePage.attr("href","index2.html");
         savedEmail = user.email;
         displayEmail.val(savedEmail);
         var fullName = user.displayName.split(/\s+/);
