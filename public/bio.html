@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -14,41 +13,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-    <!-- <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
-      authDomain: "one2ride-193914.firebaseapp.com",
-      databaseURL: "https://one2ride-193914.firebaseio.com",
-      projectId: "one2ride-193914",
-      storageBucket: "",
-      messagingSenderId: "232944570362"
-    };
-    firebase.initializeApp(config);
-  </script> -->
+    <script src="assets/javascript/login.js"></script>
     <title>1-2 Ride</title>
 </head>
-<body class="background-color">
+<body>
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-sm justify-content-between">
-        <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i> </a>
-        <div id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link homePage" href="index.html">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">About Us<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link loginLink" href="login.html">Login</a>
-                </li>         
-                <li id="gearMenu" class="nav-item">
-                    <a class="nav-link" href="settings.html"><i class="fas fa-cog"></i></a>
-                </li>        
-            </ul>
-        </div>
-    </nav>
+            <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i></a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-dark navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+                <ul class="nav navbar-nav navbar-right text-right">
+                    <li class="nav-item"><a class="nav-link homePage" href="index.html">Home</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="#">About Us<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link loginLink" href="login.html">Login</a></li>         
+                    <li id="gearMenu" class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i></a></li>   
+                </ul>
+            </div>
+        </nav>  
 
     <main class="container">
         <div class="row bio-content rounded">

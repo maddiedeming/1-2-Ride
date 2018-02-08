@@ -1,8 +1,11 @@
+$(".chart-section").hide();
 $("#carData").hide()
 // Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
-  toBeReplaced = toBeReplaced.replace(/ /g,"+");
-  return toBeReplaced;
+  if(toBeReplaced !== undefined){
+    toBeReplaced = toBeReplaced.replace(/ /g,"+");
+    return toBeReplaced;
+  }
 }
 //below function uses the geolocation function from the browser and returns the lat/long. It then populates the form accordingly, setting up 
 //for when the person adds destination address --crystal
@@ -16,15 +19,20 @@ function getCurrentLocation(){
   function success(position){
       let lat = position.coords.latitude;
       let lng = position.coords.longitude;
+      $("#currentLocationInput").data("latitude",lat);
+      $("#currentLocationInput").data("longitude",lng);
       $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
         type:"GET"})
       .done(function(results){
         let currentAddress = results.results[0].address_components[0].long_name + " " + results.results[0].address_components[1].short_name;
         let currentCity = results.results[0].address_components[2].short_name;
         let currentState = results.results[0].address_components[5].short_name;
-        $("#address").val(currentAddress);
-        $("#city").val(currentCity);
-        $("#state").val(currentState);
+        let formattedAddress = results.results[0].formatted_address
+        // $("#address").val(currentAddress);
+        // $("#city").val(currentCity);
+        // $("#state").val(currentState);
+        $("#currentLocationInput").val(formattedAddress);
+        initMap(lat,lng);
       });
     
   }
@@ -169,6 +177,7 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
                 LineChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
+                $(".chart-section").show();
                 })
             .fail(function(error){
               console.log(error)

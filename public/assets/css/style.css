@@ -1,6 +1,6 @@
 .form-section {
     margin-top: 10%;
-    border: 1px solid #343a40;
+    /* border: 1px solid #343a40; */
     border-radius: 5px;
 }
 
@@ -16,7 +16,7 @@ form {
     height: 300px;
 }
 
-.btn {
+.btn-default {
    background-color: #343a40;
    border-color: #343a40;
    color:white;
@@ -26,10 +26,10 @@ form {
     background-color: #5d6872;
 }
 
-canvas {
+/* canvas {
     background-color: #343a40!important;
     border-radius: 25px;
-}
+} */
 .bio-content{
     margin-top:2em;
     padding: 1em;
@@ -51,7 +51,9 @@ canvas {
 }
 
 .navbar{
-    background-color: #11365b;
+    /* background-color: #11365b; */
+    /* background-color: #31cea7; */
+    background-color: #e16644;
 }
 
 .navbar a{
@@ -69,3 +71,9 @@ canvas {
 #btn-lyft{
     background-color:#ff00bf;
 }
+
+#map{
+    width: 100%;
+    height: 100%;
+    background-color: grey;
+  }

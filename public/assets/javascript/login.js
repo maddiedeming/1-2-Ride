@@ -1,13 +1,4 @@
-// Firebase
-var config = {
-    apiKey: "AIzaSyBq2X4aPR6j4XLD_uFwfZ5V_YGztrgIfkM",
-    authDomain: "ride-96547.firebaseapp.com",
-    databaseURL: "https://ride-96547.firebaseio.com",
-    projectId: "ride-96547",
-    storageBucket: "ride-96547.appspot.com",
-    messagingSenderId: "918464797775"
-};
-firebase.initializeApp(config);
+// Initialize Firebase
 var database = firebase.database();
 // Global Variables
 var email = "";
@@ -92,6 +83,7 @@ loginSubmit.on("click", function(event){
         formControl.val("");
         errorMessageDisplay.addClass("invisible");
         errorMessageDisplay.text("");
+        location.href="index.html";
     }).catch(function(error){
         inputPassword.val("");
         errorCode = error.code;
