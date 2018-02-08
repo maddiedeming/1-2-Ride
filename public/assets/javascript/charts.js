@@ -92,12 +92,11 @@ function lyftDoughnutChart(response) {
 
     let lyftSeatKeys =[];
     Object.keys(lyftSeatsCounted).forEach((value) => {
-        value = "Lyft " + value + " Seats";
-        lyftSeatKeys.push(value);
+        value =  "Lyft " + value + " Seats" ;
+        valueStr = value.toString();
+        lyftSeatKeys.push(valueStr);
     });
-
     lyftSeatData = [lyftSeatKeys, seatValuesArray];
-    console.log(lyftSeatData);
     return lyftSeatData;
 }
 
@@ -131,11 +130,11 @@ function uberDoughnutChart(response) {
     let uberSeatKeys =[];
     Object.keys(uberSeatsCounted).forEach((value) => {
         value = "Uber " + value + " Seats";
-        uberSeatKeys.push(value);
+        valueStr = value.toString();
+        uberSeatKeys.push(valueStr);
     });
 
     uberSeatData = [uberSeatKeys, seatValuesArray];
-    console.log("Uber seat Data: " + uberSeatData);
     return uberSeatData;
 }
 
@@ -143,11 +142,15 @@ function uberDoughnutChart(response) {
 
 function doughnutChartRender (lyftSeatData, uberSeatData) {
     const doughnutChart = document.getElementById("dough-chart");
-    const combinedKeyLabels = lyftSeatData[0] + ", " + uberSeatData[0];
-    const demo = combinedKeyLabels.split(",");
-    alert("Labels Array: " + combinedKeyLabels);
-    console.log(combinedKeyLabels)
-    // Combinedseatvals is making 3 2, 2 2
+    let combinedKeyLabels = [];
+    for(var i = 0; i <= lyftSeatData[0].length; i++) {
+        let indexValue = lyftSeatData[0].shift();
+        combinedKeyLabels.push(indexValue);
+    }
+    for(var i = 0; i <= uberSeatData[0].length; i++) {
+        let indexValue = uberSeatData[0].shift();
+        combinedKeyLabels.push(indexValue);
+    }
     const combinedSeatValues = lyftSeatData[1].join(" ") + " " +uberSeatData[1].join(" ");
     const combinedSeatsArray = combinedSeatValues.split(" ");
     const textDoughnutChart = new Chart(doughnutChart, {
@@ -160,9 +163,8 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
                 data: combinedSeatsArray
             }],
             
-            labels: [
-                combinedKeyLabels
-            ]
+            labels: combinedKeyLabels
+            
         },
     });
 }
