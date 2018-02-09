@@ -22,13 +22,13 @@ form {
 }
 
 #line-chart {
-    position:absolute; top:0px; left:0px;
+    /*position:absolute; top:0px; left:0px;*/
     width:300px;
     height:200px;
 }
 
 #dough-chart {
-    position:absolute; top:0px; left:0px;
+    /*position:absolute; top:0px; left:0px;*/
     width:300px;
     height:200px;}
 
