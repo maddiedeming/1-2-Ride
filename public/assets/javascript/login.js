@@ -10,7 +10,8 @@ var errorMessage = "";
 // jQuery Global Variables
 var newUser = $("#newUser");
 var loginSubmit = $("#loginSubmit");
-var loginLink = $(".loginLink");
+var loginLink = $("#loginLink");
+console.log(loginLink)
 var forgotPasswordSubmit = $("#forgotPasswordSubmit");
 var forgotPasswordEmail = $("#forgotPasswordEmail");
 var formControl = $(".form-control");
@@ -48,7 +49,9 @@ firebase.auth().onAuthStateChanged(function(user){
         var lastName = fullName.pop();
         firstNameDisplay.val(firstName);
         lastNameDisplay.val(lastName);
+        console.log(loginLink)
         loginLink.text("Sign Out");
+        console.log(loginLink)
         gearMenu.show();
     }
     else{

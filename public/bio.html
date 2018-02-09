@@ -27,7 +27,7 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="assets/javascript/login.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <title>1-2 Ride</title>
     <title>About Us</title>
 </head>
@@ -43,7 +43,7 @@
                 <ul class="nav navbar-nav navbar-right text-right">
                     <li class="nav-item"><a class="nav-link homePage" href="index.html">Home</a></li>
                     <li class="nav-item active"><a class="nav-link" href="#">About Us<span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a class="nav-link loginLink" href="login.html">Login</a></li>         
+                    <li class="nav-item"><a class="nav-link" id="loginLink" href="login.html">Login</a></li>
                     <li id="gearMenu" class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i></a></li>   
                 </ul>
             </div>
@@ -83,5 +83,6 @@
        
        </div>
     </main>
+    <script src="assets/javascript/login.js"></script>
 </body>
 </html>
