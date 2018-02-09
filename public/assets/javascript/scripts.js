@@ -1,3 +1,18 @@
+var database = firebase.database();
+var lyftCount = 0;
+var uberCount = 0;
+
+var lyftButton = $("#btn-lyft");
+var uberButton = document.getElementById("#btn-uber");
+
+lyftButton.on("click", function() {
+  alert("Apples");
+  lyftCount++;
+  database.ref("lyft").set({
+    lyftCount: lyftCount
+  })
+})
+
 $(".chart-section").hide();
 $("#carData").hide()
 // Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
