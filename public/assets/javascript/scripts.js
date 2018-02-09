@@ -1,24 +1,3 @@
-var database = firebase.database();
-var lyftCount = 0;
-var uberCount = 0;
-
-var lyftButton = $("#btn-lyft");
-var uberButton = $("#btn-uber");
-
-lyftButton.on("click", function() {
-  lyftCount++;
-  database.ref("Lyft").set({
-    lyftCount: lyftCount
-  })
-})
-
-uberButton.on("click", function() {
-  uberCount++;
-  database.ref("Uber").set({
-    uberCount: uberCount
-  })
-})
-
 $(".chart-section").hide();
 $("#carData").hide()
 // Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
@@ -255,9 +234,46 @@ function seatComparison(currentLocation) {
       })
 }
 
+// Button click Database incrementation
+var database = firebase.database();
+var lyftCount = 0;
+var uberCount = 0;
 
+var lyftButton = $("#btn-lyft");
+var uberButton = $("#btn-uber");
+
+
+database.ref().on("value", function(snapshot) {
+  lyftCount = snapshot.child("Lyft").val().lyftCount;
+  uberCount = snapshot.child("Uber").val().uberCount;
+}, 
+function(errorObject) {
+});
+
+// Need to add an if statement to test if the user is signed in
+
+function preferenceBtn () {
+  console.log($(this).val());
+  if ($(this).val() === "Lyft") {
+    lyftCount++;
+    database.ref("Lyft").set({
+      lyftCount: lyftCount
+    })
+  } else if ($(this).val() === "Uber") {
+    uberCount ++;
+    database.ref("Uber").set({
+      uberCount: uberCount
+    })
+  }
+  database.ref().once('value').then(function(snapshot) {
+    $("#preference").text("Users have prefered Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
+  });
+  lyftButton.hide();
+  uberButton.hide();
+}
 
 
 
 $("#submit").on("click", submitInfo);
+$(".preferenceButton").on("click", preferenceBtn);
 $("#currentLocation").on("click", getCurrentLocation)

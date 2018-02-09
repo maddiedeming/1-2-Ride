@@ -71,11 +71,11 @@
         </div> 
         <section id="servicePreference"> 
             <div class="row">
-                <h3 class="col d-inline">Which of the following Services do you prefer to use?</h3>
-            </div> 
+                <h3 class="col d-inline" id="preference">Which of the following Services do you prefer to use?</h3>
+            </div>
             <div class="row">
-                <button id="btn-lyft" class="btn col"><i style="color:white;" class="fab fa-fw fa-lyft fa-2x"></i></button>
-                <button id="btn-uber" class="btn col"><i data-fa-transform="grow-3" style="color:black; background-color:white;" class="fab fa-uber fa-2x"></i></button>
+                <button id="btn-lyft" class="btn col preferenceButton" value="Lyft"><i style="color:white;" class="fab fa-fw fa-lyft fa-2x"></i></button>
+                <button id="btn-uber" class="btn col preferenceButton" value="Uber"><i data-fa-transform="grow-3" style="color:black; background-color:white;" class="fab fa-uber fa-2x"></i></button>
             </div>  
         </section>  
         <!--Modal for error when accessing geolocation-->
