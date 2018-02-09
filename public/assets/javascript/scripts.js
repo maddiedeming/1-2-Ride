@@ -28,9 +28,6 @@ function getCurrentLocation(){
         let currentCity = results.results[0].address_components[2].short_name;
         let currentState = results.results[0].address_components[5].short_name;
         let formattedAddress = results.results[0].formatted_address
-        // $("#address").val(currentAddress);
-        // $("#city").val(currentCity);
-        // $("#state").val(currentState);
         $("#currentLocationInput").val(formattedAddress);
         initMap(lat,lng);
       });
@@ -94,22 +91,18 @@ function parseLyftData(data, start, end){
 function submitInfo(){
   event.preventDefault();
   $("#carData").show();
-  const address = replaceSpaces($("#address").val());
-  const city = replaceSpaces($("#city").val().trim());
-  const state = $("#state").val().trim();
+  const currentLocation = $("#currentLocationInput").val().trim();
   const lat = 0;
   const lng = 0;
-  const destAddress = replaceSpaces($("#destAddress").val());
-  const destCity = replaceSpaces($("#destCity").val());
-  const destState = $("#destState").val();
-  costComparison(address, city, state, destAddress, destCity, destState);
-  seatComparison(address, city, state);
+  const destLocation = $("#destinationInput").val().trim();
+  costComparison(currentLocation, destLocation);
+  seatComparison(currentLocation);
 }
 
 // Function contains ajax requests for cost comparison Data
-function costComparison(address, city, state, destAddress, destCity, destState) {
+function costComparison(currentLocation, destLocation) {
   $.ajax({
-    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
     type:"GET",  
     })
     .done(function(response){
@@ -121,7 +114,7 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
     })
     .then(function(){
       $.ajax({
-        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destAddress + ',+' + destCity + ',+' + destState + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
         type:"GET",
       })
       .done(function(response){
@@ -144,7 +137,7 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
           let lyftCostData = [lyftLabels, lyftDataSet];
 
           $.ajax({
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
             type:"GET",
       
           })
@@ -157,7 +150,7 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
             })
               .then(function(){
               $.ajax({
-                url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destAddress + ',+' + destCity + ',+' + destState + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+                url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
                 type:"GET",
           
               })
@@ -190,9 +183,9 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
 }
 
 
-function seatComparison(address, city, state) {
+function seatComparison(currentLocation) {
   $.ajax({
-    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
     type:"GET",  
     })
     .done(function(response){
@@ -212,7 +205,7 @@ function seatComparison(address, city, state) {
       .done(function(response){
         lyftDoughnutChart(response);
         $.ajax({
-          url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+          url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation+ '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
           type:"GET",
     
         })
