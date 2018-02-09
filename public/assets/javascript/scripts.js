@@ -29,7 +29,6 @@ function getCurrentLocation(){
         let currentState = results.results[0].address_components[5].short_name;
         let formattedAddress = results.results[0].formatted_address
         $("#currentLocationInput").val(formattedAddress);
-        initMap(lat,lng);
       });
     
   }

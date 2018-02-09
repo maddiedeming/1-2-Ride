@@ -1,8 +1,8 @@
 function initMap(lat,lng){
   var map = {};
     if(lat === undefined || lng === undefined){
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -33.8688, lng: 151.2195},
+      map = new google.maps.Map(document.getElementById('map'),{
+        center: {lat: 35.22846, lng: -80.83508760000001},
         zoom: 13
       });
     }
