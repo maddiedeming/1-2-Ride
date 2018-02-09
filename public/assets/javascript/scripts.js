@@ -3,13 +3,19 @@ var lyftCount = 0;
 var uberCount = 0;
 
 var lyftButton = $("#btn-lyft");
-var uberButton = document.getElementById("#btn-uber");
+var uberButton = $("#btn-uber");
 
 lyftButton.on("click", function() {
-  alert("Apples");
   lyftCount++;
-  database.ref("lyft").set({
+  database.ref("Lyft").set({
     lyftCount: lyftCount
+  })
+})
+
+uberButton.on("click", function() {
+  uberCount++;
+  database.ref("Uber").set({
+    uberCount: uberCount
   })
 })
 
