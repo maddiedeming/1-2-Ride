@@ -86,14 +86,23 @@ form {
 }
 
 #map{
-
     width: 100%;
-
     height: 100%;
-
     background-color:#f2f1f2;
-
-  }
+}
+.nav{
+    color:white;
+}
+.nav a:hover{
+    color:white;
+    font-weight:bold;
+}
+.nav-tabs a{
+    color:black;
+}
+.nav-tabs a:hover{
+    color:black;
+}
 
 @media screen and (max-width: 980px){
 
