@@ -16,6 +16,8 @@
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
     <!-- Animate Stuff -->
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <script>
             var config = {
@@ -28,7 +30,6 @@
         };
         firebase.initializeApp(config);
 
-        //AOS.init();
     </script>
     <title>1-2 Ride</title>
 </head>
@@ -52,7 +53,7 @@
     <div class="container">
         <div class="row">
             <div class="col mt-5">
-                <div class="form-section my-auto" id"formContainer" style="background-color:#f2f1f2;">
+                <div class="form-section my-auto animated fadeInLeft" id"formContainer" style="background-color:#f2f1f2;">
                     <form class="form-group">
                         <div class="form-row">
                             <div class="input-group mb-3">
@@ -67,14 +68,14 @@
                         </div>     
                     </form>                     
                 </div>
-                <button class="btn btn-default btn-block" type="submit" id="submit">Submit</button>
+                <button class="btn btn-default btn-block animated fadeInLeft" type="submit" id="submit">Submit</button>
             </div>
             <div class="col mt-5">
-                <div class="form-section my-auto" id="map"></div>
+                <div class="form-section my-auto animated fadeInRight" id="map"></div>
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid animated fadeIn">
         <div class="row  pt-5 pb-5" id="servicePreference" style="background-color:#f2f1f2;">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
@@ -108,15 +109,15 @@
         </div>
         <!--End of Modal-->
         <div class="row text-center">
-            <div class="col mt-5 d-inline-block" style="max-width:570px;">
-                <canvas id="line-chart"></canvas>
+            <div class="col mt-5 d-inline-block" style="max-width:570px;" data-aos="fade-left">
+                <canvas id="bar-chart"></canvas>
             </div>
-            <div class="col mt-5 d-inline-block" style="max-width:570px;">
+            <div class="col mt-5 d-inline-block" style="max-width:570px;" data-aos="fade-right">
                 <canvas id="dough-chart"></canvas>
             </div>
         </div>
         <div class="row text-center mt-3">
-            <table class="table table-striped table-sm mt-3" id="carData">
+            <table class="table table-striped table-sm mt-3" id="carData" data-aos="zoom-in">
                 <thead>
                     <tr>
                         <th scope="col">Ride Type</th>
@@ -129,6 +130,10 @@
             </table>
         </div>
     </div>
+
+    <script>
+        AOS.init();
+    </script>
     <script src="assets/javascript/login.js"></script>
     <script src="assets/javascript/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
