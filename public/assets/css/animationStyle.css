@@ -1,0 +1,24 @@
+.testingClass::after{
+ content: '';
+    display: block;
+    background: url("../images/auto-gif.gif");
+    width: 320px; /* image width */
+    height: 220px; /* image height */
+    position: absolute;
+    top: 13px;
+    right: 2px;
+}
+.navbar-brand::after{
+    content: '';
+    display: block;
+    background-image: url("assets/images/auto-gif.gif");
+    width: 320px; /* image width */
+    height: 220px; /* image height */
+    position: absolute;
+    top: 13px;
+    right: 2px;
+    
+}
+.navbar-brand{
+    position:relative;
+}
