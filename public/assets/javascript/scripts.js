@@ -91,8 +91,6 @@ function submitInfo(){
   event.preventDefault();
   $("#carData").show();
   const currentLocation = $("#currentLocationInput").val().trim();
-  const lat = 0;
-  const lng = 0;
   const destLocation = $("#destinationInput").val().trim();
   costComparison(currentLocation, destLocation);
   seatComparison(currentLocation);
@@ -129,12 +127,12 @@ function costComparison(currentLocation, destLocation) {
     
         })
         .then(function(response){
-
-        parseLyftData(response, startLat, destLng);
-          let lyftData = lyftLineChart(response);
+          parseLyftData(response, startLat, destLng);
+          let lyftData = lyftBarChart(response);
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
+        
 
           $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
@@ -166,8 +164,8 @@ function costComparison(currentLocation, destLocation) {
         
             })
               .done(function(response){
-                let uberData = uberLineChart(response);
-                LineChartRender(lyftLabels, lyftDataSet, uberData);
+                let uberData = uberBarChart(response);
+                BarChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
                 $(".chart-section").show();
@@ -251,9 +249,8 @@ database.ref().on("value", function(snapshot) {
 function(errorObject) {
 });
 
-// Need to add an if statement to test if the user is signed in
 
-function preferenceBtn () {
+function preferenceBtn() {
   console.log($(this).val());
   if ($(this).val() === "Lyft") {
     lyftCount++;
@@ -276,5 +273,4 @@ function preferenceBtn () {
 
 
 $("#submit").on("click", submitInfo);
-$(".preferenceButton").on("click", preferenceBtn);
 $("#currentLocation").on("click", getCurrentLocation)

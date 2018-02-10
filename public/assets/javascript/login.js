@@ -41,6 +41,7 @@ errorMessageDisplay.text("");
 firebase.auth().onAuthStateChanged(function(user){
     var pageName = location.pathname.split('/');
     if(user){
+        $(".preferenceButton").on("click", preferenceBtn);
         savedEmail = user.email;
         displayEmail.val(savedEmail);
         if(user.displayName !== null){
