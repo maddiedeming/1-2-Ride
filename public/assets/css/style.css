@@ -66,9 +66,9 @@ form {
 .navbar{
     /* background-color: #11365b; */
     /* background-color: #31cea7; */
-    background-color: #e16644;
+    /* background-color: #e16644; */
+    background-color: #e44b3b;
 }
-
 .navbar a{
     color:white;
 }
@@ -94,8 +94,14 @@ form {
     color:white;
 }
 .nav a:hover{
-    color:white;
-    font-weight:bold;
+    /* color:#2E607F; */
+    color:#76CAFF;
+    /* font-weight:bold; */
+}
+.navbar-brand:hover{
+    /* color:#2E607F; */
+    color:#76CAFF;
+    /* font-weight:bold; */
 }
 .nav-tabs a{
     color:black;
