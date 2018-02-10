@@ -23,14 +23,14 @@ form {
 
 #line-chart {
     /*position:absolute; top:0px; left:0px;*/
-    width:300px;
-    height:200px;
+    width:500px;
+    height:300px;
 }
 
 #dough-chart {
     /*position:absolute; top:0px; left:0px;*/
-    width:300px;
-    height:200px;}
+    width:500px;
+    height:300px;}
 
 #img-footer{
     height: 300px;
