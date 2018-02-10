@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="assets/images/carIconSmall.png">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bioStyles.css">
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+    <script>
+            var config = {
+            apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
+            authDomain: "one2ride-193914.firebaseapp.com",
+            databaseURL: "https://one2ride-193914.firebaseio.com",
+            projectId: "one2ride-193914",
+            storageBucket: "one2ride-193914.appspot.com",
+            messagingSenderId: "232944570362"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <title>1-2 Ride</title>
+    <title>About Us</title>
+</head>
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-sm justify-content-between">
+            <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i></a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-dark navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+                <ul class="nav navbar-nav navbar-right text-right">
+                    <li class="nav-item"><a class="nav-link homePage" href="index.html">Home</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="#">About Us<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" id="loginLink" href="login.html">Login</a></li>
+                    <li id="gearMenu" class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i></a></li>   
+                </ul>
+            </div>
+        </nav>  
+
+
+    <main class="container bio">
+        <div class="bio-content">
+            <div class="card bio-container">
+                <div class="card-block ">
+                    <img src="assets/images/alexH.png" alt="Card image cap">
+                    <h4 class="card-title">Alex Harris</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    
+                </div>
+            </div>
+            <div class="card bio-container">
+                <div class="card-block">
+                    <img src="assets/images/maddieD.png" alt="Card image cap">
+                    <h4 class="card-title">Maddie Deming</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card bio-container">
+                <div class="card-block">
+                    <img src="assets/images/crystalM.jpg" alt="Card image cap">
+                    <h4 class="card-title">Crystal Milliken</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-3" >
+            <div class="card-header" style="background-color:#e16644; color:white; text-align:center; "><h4>1-2 Ride</h4></div>
+            <div class="card-body">
+                <p class="card-text">A simple application comparing Lyft and Uber. Our project is designed to give you the capability of searching for available Uber and Lyft rides
+                in a side by side comparison. Will it effect the user's decision? 
+                </p>
+                <div class="card-header"><h6>The following technologies were
+                used in this application:</h6></div>
+                <ul class="list-group bio-list list-group-flush" style="line-height: .5rem">
+                <a href="https://getbootstrap.com" class="list-group-item list-group-item-action ">Bootstrap v.4</a>
+                <a href="https://jquery.com/" class="list-group-item list-group-item-action">Jquery</a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation"class="list-group-item list-group-item-action">Geolocation services</a>
+                <a href="https://firebase.google.com/" class="list-group-item list-group-item-action">Firebase Database</a>
+                <a href="https://developer.uber.com/"class="list-group-item list-group-item-action">Uber API</a>
+                <a href="https://www.lyft.com/developers" class="list-group-item list-group-item-action">Lyft API</a>
+                <a href="http://www.chartjs.org/" class="list-group-item list-group-item-action">Chart.js</a>
+                </ul>
+            </div>
+        </div>
+     </main>
+
+    <script src="assets/javascript/login.js"></script>
+</body>
+</html>
