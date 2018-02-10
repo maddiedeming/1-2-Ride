@@ -49,14 +49,16 @@ function uberBarChart(response) {
 
 // Draws Chart
 function BarChartRender(lyftLabels, lyftDataSet, uberData){
-    const lineChart = document.getElementById('line-chart').getContext('2d');
-    const textLineChart = new Chart(lineChart, {
+    const barChart = document.getElementById('bar-chart').getContext('2d');
+    const textBarChart = new Chart(barChart, {
         type: 'bar',
         data: {
             labels: lyftLabels,
             datasets: [lyftDataSet, uberData] 
             }
     });
+    const barChartElement = $("#bar-chart");
+    barChartElement.addClass("animated fadeInLeft");
 }
 
 
@@ -167,6 +169,8 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
             
         },
     });
+    const doughnutElement = $("#dough-chart");
+    doughnutElement.addClass("animated fadeInRight");
 }
 
 
