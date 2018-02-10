@@ -263,7 +263,7 @@ function preferenceBtn() {
     })
   }
   database.ref().once('value').then(function(snapshot) {
-    $("#preference").text("Users have prefered Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
+    $("#preference").text("Users have preferred Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
   });
   lyftButton.fadeOut();
   uberButton.fadeOut();
