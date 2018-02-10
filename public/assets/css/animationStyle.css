@@ -1,23 +1,24 @@
-.testingClass::after{
- content: '';
-    display: block;
-    background: url("../images/auto-gif.gif");
-    width: 320px; /* image width */
-    height: 220px; /* image height */
-    position: absolute;
-    top: 13px;
-    right: 2px;
+
+@keyframes animateCar{
+    from {
+        left: -10em;
+    }
+    to {
+        left: 100%;
+    }
 }
-.navbar-brand::after{
+.testingClass::after{
     content: '';
     display: block;
-    background-image: url("assets/images/auto-gif.gif");
-    width: 320px; /* image width */
-    height: 220px; /* image height */
+    background-image: url("../images/auto2-gif.gif");
+    width: 70px; /* image width */
+    height: 29px; /* image height */
     position: absolute;
-    top: 13px;
-    right: 2px;
-    
+    top: 1em;
+    left: -10em;
+    animation-direction: normal;
+    animation-delay: 3s;
+    animation: animateCar 10s infinite linear;
 }
 .navbar-brand{
     position:relative;
