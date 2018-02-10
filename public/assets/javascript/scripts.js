@@ -128,8 +128,9 @@ function costComparison(currentLocation, destLocation) {
           headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
     
         })
-        .done(function(response){
-          parseLyftData(response, startLat, destLng);
+        .then(function(response){
+
+        parseLyftData(response, startLat, destLng);
           let lyftData = lyftLineChart(response);
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
