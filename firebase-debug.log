@@ -30,3 +30,38 @@
 [info] i  hosting: Serving hosting files from: public
 [info] +  hosting: Local server: http://127.0.0.1:8080
 
+<<<<<<< HEAD
+=======
+[debug] [2018-02-10T17:33:40.343Z] ----------------------------------------------------------------------
+[debug] [2018-02-10T17:33:40.346Z] Command:       C:\Applications\node.exe C:\Users\MaddieD\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve -p 8080 -o 127.0.0.1
+[debug] [2018-02-10T17:33:40.346Z] CLI Version:   3.17.4
+[debug] [2018-02-10T17:33:40.346Z] Platform:      win32
+[debug] [2018-02-10T17:33:40.346Z] Node Version:  v8.9.0
+[debug] [2018-02-10T17:33:40.347Z] Time:          Sat Feb 10 2018 12:33:40 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:33:40.347Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-10T17:33:40.359Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-10T17:33:40.359Z] > authorizing via signed-in user
+[debug] [2018-02-10T17:33:40.361Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/one2ride-193914  
+  
+ Sat Feb 10 2018 12:33:40 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:33:40.802Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-10T17:33:40.805Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/one2ride-193914/tokens  
+  
+ Sat Feb 10 2018 12:33:40 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:33:41.326Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\MaddieD\Desktop\1-2-Ride'...
+[info] 
+[debug] [2018-02-10T17:33:41.335Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/one2ride-193914  
+  
+ Sat Feb 10 2018 12:33:41 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:33:41.665Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-10T17:33:41.666Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/232944570362/clients/_:getWebAppConfig  
+  
+ Sat Feb 10 2018 12:33:41 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:33:42.124Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://127.0.0.1:8080
+
+>>>>>>> ff684f062f89aaf63ef0c72d9f32d65f62f7a598

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 $("#charts").hide();
 $("#carData").hide()
+=======
+$("#dataContent").hide();
+>>>>>>> ff684f062f89aaf63ef0c72d9f32d65f62f7a598
 // Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
   if(toBeReplaced !== undefined){
@@ -30,7 +34,6 @@ function getCurrentLocation(){
         let formattedAddress = results.results[0].formatted_address
         $("#currentLocationInput").val(formattedAddress);
       });
-    
   }
   function error(err){
      $('#geolocationModal').modal('show');
@@ -89,7 +92,11 @@ function parseLyftData(data, start, end){
  // Below extracts Dom info, sends to calls --crystal
 function submitInfo(){
   event.preventDefault();
+<<<<<<< HEAD
   $("#carData").show();
+=======
+  $("#dataContent").show();
+>>>>>>> ff684f062f89aaf63ef0c72d9f32d65f62f7a598
   $("#lyftDetails").empty();
   const currentLocation = $("#currentLocationInput").val().trim();
   const destLocation = $("#destinationInput").val().trim();
@@ -133,8 +140,6 @@ function costComparison(currentLocation, destLocation) {
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
-        
-
           $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
             type:"GET",
@@ -169,7 +174,10 @@ function costComparison(currentLocation, destLocation) {
                 BarChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
+<<<<<<< HEAD
                 $("#charts").show();
+=======
+>>>>>>> ff684f062f89aaf63ef0c72d9f32d65f62f7a598
                 })
             .fail(function(error){
               console.log(error)
