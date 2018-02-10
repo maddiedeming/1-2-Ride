@@ -1,0 +1,32 @@
+[debug] [2018-02-10T17:25:22.712Z] ----------------------------------------------------------------------
+[debug] [2018-02-10T17:25:22.716Z] Command:       C:\Applications\node.exe C:\Users\MaddieD\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve -p 8080 -o 127.0.0.1
+[debug] [2018-02-10T17:25:22.716Z] CLI Version:   3.17.4
+[debug] [2018-02-10T17:25:22.716Z] Platform:      win32
+[debug] [2018-02-10T17:25:22.716Z] Node Version:  v8.9.0
+[debug] [2018-02-10T17:25:22.717Z] Time:          Sat Feb 10 2018 12:25:22 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:25:22.717Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-10T17:25:22.736Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-10T17:25:22.737Z] > authorizing via signed-in user
+[debug] [2018-02-10T17:25:22.741Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/one2ride-193914  
+  
+ Sat Feb 10 2018 12:25:22 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:25:23.180Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-10T17:25:23.182Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/one2ride-193914/tokens  
+  
+ Sat Feb 10 2018 12:25:23 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:25:23.549Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\MaddieD\Desktop\1-2-Ride'...
+[info] 
+[debug] [2018-02-10T17:25:23.554Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/one2ride-193914  
+  
+ Sat Feb 10 2018 12:25:23 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:25:23.761Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-10T17:25:23.762Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/232944570362/clients/_:getWebAppConfig  
+  
+ Sat Feb 10 2018 12:25:23 GMT-0500 (Eastern Standard Time)
+[debug] [2018-02-10T17:25:24.341Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://127.0.0.1:8080
+

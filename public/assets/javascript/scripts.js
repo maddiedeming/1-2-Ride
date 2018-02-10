@@ -1,4 +1,4 @@
-$(".chart-section").hide();
+$("#charts").hide();
 $("#carData").hide()
 // Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
@@ -90,6 +90,7 @@ function parseLyftData(data, start, end){
 function submitInfo(){
   event.preventDefault();
   $("#carData").show();
+  $("#lyftDetails").empty();
   const currentLocation = $("#currentLocationInput").val().trim();
   const destLocation = $("#destinationInput").val().trim();
   costComparison(currentLocation, destLocation);
@@ -168,7 +169,7 @@ function costComparison(currentLocation, destLocation) {
                 BarChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
-                $(".chart-section").show();
+                $("#charts").show();
                 })
             .fail(function(error){
               console.log(error)
@@ -262,7 +263,7 @@ function preferenceBtn() {
     })
   }
   database.ref().once('value').then(function(snapshot) {
-    $("#preference").text("Users have prefered Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
+    $("#preference").text("Users have preferred Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
   });
   lyftButton.fadeOut();
   uberButton.fadeOut();
