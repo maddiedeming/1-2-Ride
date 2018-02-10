@@ -1,7 +1,7 @@
 
 
 
-function lyftLineChart(response) {
+function lyftBarChart(response) {
     let labels = [];
     for(var i = 0; i < response.cost_estimates.length; i++) {
         labels.push("Driver " + (i + 1) + " ");
@@ -27,7 +27,7 @@ function lyftLineChart(response) {
 
 
 
-function uberLineChart(response) {
+function uberBarChart(response) {
     let costData = [];
     for(var i = 0; i < response.prices.length; i++) {
         costData.push(response.prices[i].high_estimate);
@@ -48,7 +48,7 @@ function uberLineChart(response) {
 
 
 // Draws Chart
-function LineChartRender(lyftLabels, lyftDataSet, uberData){
+function BarChartRender(lyftLabels, lyftDataSet, uberData){
     const lineChart = document.getElementById('line-chart').getContext('2d');
     const textLineChart = new Chart(lineChart, {
         type: 'bar',

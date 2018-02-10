@@ -91,8 +91,6 @@ function submitInfo(){
   event.preventDefault();
   $("#carData").show();
   const currentLocation = $("#currentLocationInput").val().trim();
-  const lat = 0;
-  const lng = 0;
   const destLocation = $("#destinationInput").val().trim();
   costComparison(currentLocation, destLocation);
   seatComparison(currentLocation);
@@ -128,35 +126,36 @@ function costComparison(currentLocation, destLocation) {
           headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
     
         })
-        .done(function(response){
+        .then(function(response){
           parseLyftData(response, startLat, destLng);
-          let lyftData = lyftLineChart(response);
+          let lyftData = lyftBarChart(response);
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
+        })
 
-          $.ajax({
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
-            type:"GET",
+          // $.ajax({
+          //   url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+          //   type:"GET",
       
-          })
-            .done(function(response){
-              startLat = response.results[0].geometry.location.lat;
-              startLng = response.results[0].geometry.location.lng;
-            })
-              .fail(function(error){
-              console.log(error)
-            })
-              .then(function(){
-              $.ajax({
-                url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
-                type:"GET",
+          // })
+          //   .done(function(response){
+          //     startLat = response.results[0].geometry.location.lat;
+          //     startLng = response.results[0].geometry.location.lng;
+          //   })
+          //     .fail(function(error){
+          //     console.log(error)
+          //   })
+          //     .then(function(){
+          //     $.ajax({
+          //       url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+          //       type:"GET",
           
-              })
-            .done(function(response){
-              destLat = response.results[0].geometry.location.lat;
-              destLng = response.results[0].geometry.location.lng;
-            })
+          //     })
+          //   .done(function(response){
+          //     destLat = response.results[0].geometry.location.lat;
+          //     destLng = response.results[0].geometry.location.lng;
+          //   })
             .then(function(){
               $.ajax({
               url: 'https://api.uber.com/v1.2/estimates/price?start_latitude=' + startLat + '&start_longitude=' + startLng + '&end_latitude=' + destLat + '&end_longitude=' + destLng, 
@@ -165,8 +164,8 @@ function costComparison(currentLocation, destLocation) {
         
             })
               .done(function(response){
-                let uberData = uberLineChart(response);
-                LineChartRender(lyftLabels, lyftDataSet, uberData);
+                let uberData = uberBarChart(response);
+                BarChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
                 $(".chart-section").show();
@@ -177,9 +176,10 @@ function costComparison(currentLocation, destLocation) {
             })
           })
       })
-    })
-  })
-}
+    }
+//     })
+//   })
+// }
 
 
 function seatComparison(currentLocation) {
