@@ -273,5 +273,4 @@ function preferenceBtn() {
 
 
 $("#submit").on("click", submitInfo);
-// $(".preferenceButton").on("click", preferenceBtn);
 $("#currentLocation").on("click", getCurrentLocation)
