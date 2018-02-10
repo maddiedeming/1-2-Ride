@@ -132,30 +132,30 @@ function costComparison(currentLocation, destLocation) {
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
-        })
+        
 
-          // $.ajax({
-          //   url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
-          //   type:"GET",
+          $.ajax({
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+            type:"GET",
       
-          // })
-          //   .done(function(response){
-          //     startLat = response.results[0].geometry.location.lat;
-          //     startLng = response.results[0].geometry.location.lng;
-          //   })
-          //     .fail(function(error){
-          //     console.log(error)
-          //   })
-          //     .then(function(){
-          //     $.ajax({
-          //       url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
-          //       type:"GET",
+          })
+            .done(function(response){
+              startLat = response.results[0].geometry.location.lat;
+              startLng = response.results[0].geometry.location.lng;
+            })
+              .fail(function(error){
+              console.log(error)
+            })
+              .then(function(){
+              $.ajax({
+                url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+                type:"GET",
           
-          //     })
-          //   .done(function(response){
-          //     destLat = response.results[0].geometry.location.lat;
-          //     destLng = response.results[0].geometry.location.lng;
-          //   })
+              })
+            .done(function(response){
+              destLat = response.results[0].geometry.location.lat;
+              destLng = response.results[0].geometry.location.lng;
+            })
             .then(function(){
               $.ajax({
               url: 'https://api.uber.com/v1.2/estimates/price?start_latitude=' + startLat + '&start_longitude=' + startLng + '&end_latitude=' + destLat + '&end_longitude=' + destLng, 
@@ -176,10 +176,9 @@ function costComparison(currentLocation, destLocation) {
             })
           })
       })
-    }
-//     })
-//   })
-// }
+    })
+  })
+}
 
 
 function seatComparison(currentLocation) {
@@ -250,9 +249,8 @@ database.ref().on("value", function(snapshot) {
 function(errorObject) {
 });
 
-// Need to add an if statement to test if the user is signed in
 
-function preferenceBtn () {
+function preferenceBtn() {
   console.log($(this).val());
   if ($(this).val() === "Lyft") {
     lyftCount++;
@@ -275,5 +273,5 @@ function preferenceBtn () {
 
 
 $("#submit").on("click", submitInfo);
-$(".preferenceButton").on("click", preferenceBtn);
+// $(".preferenceButton").on("click", preferenceBtn);
 $("#currentLocation").on("click", getCurrentLocation)
