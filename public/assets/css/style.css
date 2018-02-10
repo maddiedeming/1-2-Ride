@@ -1,7 +1,6 @@
 
-.form-section {
+.form-section{
     margin-top: 10%;
-    /* border: 1px solid #343a40; */
     border-radius: 5px;
 }
 
@@ -9,28 +8,27 @@ h3 {
     text-align: center;
 }
 
-#servicePreference {
+#servicePreference{
     margin-top: 35px;
 }
 
-form {
+form{
     padding: 4%;
 }
 
-.chart-section {
+.chart-section{
     margin-top: 5%;
 }
 
-#line-chart {
-    /*position:absolute; top:0px; left:0px;*/
+#line-chart{
     width:500px;
     height:300px;
 }
 
-#dough-chart {
-    /*position:absolute; top:0px; left:0px;*/
+#dough-chart{
     width:500px;
-    height:300px;}
+    height:300px;
+}
 
 #img-footer{
     height: 300px;
@@ -42,33 +40,14 @@ form {
    color:white;
 }
 
-.btn:hover {
+.btn:hover{
     background-color: #5d6872;
 }
 
-/* canvas {
-    background-color: #343a40!important;
-    border-radius: 25px;
- } 
-
-.table th{
-    font-size:15px;
-}
-.table td{
-    font-size: 10px;
-    padding-top: 0em;
-}
-
-.background-color{
-    background-color: #31cea7;
-}  */
-
 .navbar{
-    /* background-color: #11365b; */
-    /* background-color: #31cea7; */
-    /* background-color: #e16644; */
-    background-color: #e44b3b;
+    background-color: #fb4f3b;
 }
+
 .navbar a{
     color:white;
 }
@@ -90,37 +69,43 @@ form {
     height: 100%;
     background-color:#f2f1f2;
 }
+
 .nav{
     color:white;
 }
+
 .nav a:hover{
-    /* color:#2E607F; */
-    color:#76CAFF;
-    /* font-weight:bold; */
+    color:#26c7db;
 }
+
 .navbar-brand:hover{
-    /* color:#2E607F; */
-    color:#76CAFF;
-    /* font-weight:bold; */
+    color:#26c7db;
 }
+
+#forgotPassword{
+    color:#26c7db;
+}
+
+.fa-location-arrow{
+    color:#26c7db;
+}
+
 .nav-tabs a{
     color:black;
 }
+
 .nav-tabs a:hover{
     color:black;
 }
 
-@media screen and (max-width: 980px){
+/* @media screen and (max-width: 980px){
 
 }
-
 
 @media screen and (max-width: 768px){
 
 }
 
-
 @media screen and (max-width: 640px){
 
-
-}
+} */
