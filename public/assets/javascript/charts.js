@@ -1,7 +1,7 @@
 
 
 
-function lyftBarChart(response) {
+function lyftBarChart(response){
     let labels = [];
     for(var i = 0; i < response.cost_estimates.length; i++) {
         labels.push("Driver " + (i + 1) + " ");
