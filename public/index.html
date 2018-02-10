@@ -27,7 +27,6 @@
             messagingSenderId: "232944570362"
         };
         firebase.initializeApp(config);
-
         //AOS.init();
     </script>
     <title>1-2 Ride</title>
@@ -75,7 +74,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row  pt-5 pb-5" id="servicePreference" style="background-color:#f2f1f2;">
+        <div class="row pt-5 pb-5" id="servicePreference" style="background-color:#f2f1f2;">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
                 <div class="row d-block text-center">
@@ -87,7 +86,7 @@
             <div class="col-lg-2"></div>
         </div>  
     </div>
-    <div class="container">
+    <div id="dataContent" class="container">
         <!--Modal for error when accessing geolocation-->
         <div class="modal" tabindex="-1" role="dialog" aria-hidden="true" id="geolocationModal"> 
             <div class="modal-dialog" role="document">
@@ -108,10 +107,10 @@
         </div>
         <!--End of Modal-->
         <div id="charts" class="row text-center">
-            <div class="col mt-5 d-inline-block" style="max-width:570px;">
+            <div class="col mt-5 chart-section" style="max-width:570px;">
                 <canvas id="line-chart"></canvas>
             </div>
-            <div class="col mt-5 d-inline-block" style="max-width:570px;">
+            <div class="col mt-5 chart-sectionr" style="max-width:570px;">
                 <canvas id="dough-chart"></canvas>
             </div>
         </div>
