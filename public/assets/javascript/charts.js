@@ -38,7 +38,7 @@ function uberBarChart(response) {
         fill: false,
         lineTenstion: 0,
         backgroundColor: 'rgb(255, 160, 150)',
-        borderColor: 'rgb(0, 255, 0)',
+        borderColor: 'rgb(255, 255, 255)',
         data: uberCostData
     };
     let uberData = uberDataSet;

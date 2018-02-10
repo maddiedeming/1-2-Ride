@@ -15,6 +15,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+    <!-- Animate Stuff -->
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <script>
             var config = {
             apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
@@ -25,6 +27,8 @@
             messagingSenderId: "232944570362"
         };
         firebase.initializeApp(config);
+
+        //AOS.init();
     </script>
     <title>1-2 Ride</title>
 </head>
@@ -97,7 +101,7 @@
                         <p>Something went wrong with locating your current position, please manually input your location.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default">Save changes</button>
+                        <button type="button" class="btn btn-default">Ok</button>
                     </div>
                 </div>
             </div>
