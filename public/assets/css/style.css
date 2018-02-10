@@ -8,6 +8,8 @@ h3 {
     text-align: center;
 }
 
+
+
 #servicePreference{
     margin-top: 35px;
 }
@@ -60,8 +62,16 @@ form{
     background-color:black;
 }
 
+#btn-uber:hover{
+    background-color:rgb(37, 37, 37);
+}
+
 #btn-lyft{
     background-color:#ff00bf;
+}
+
+#btn-lyft:hover{
+    background-color:#ff59d6;
 }
 
 #map{

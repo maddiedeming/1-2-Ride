@@ -16,6 +16,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+    <!-- Animate Stuff -->
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <script>
             var config = {
             apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
@@ -52,7 +56,7 @@
 
     <main class="container bio">
         <div class="bio-content">
-            <div class="card bio-container">
+            <div class="card bio-container animated fadeInLeft">
                 <div class="card-block ">
                     <img src="assets/images/alexH.png" alt="Card image cap">
                     <h4 class="card-title">Alex Harris</h4>
@@ -60,14 +64,14 @@
                     
                 </div>
             </div>
-            <div class="card bio-container">
+            <div class="card bio-container animated fadeInDown">
                 <div class="card-block">
                     <img src="assets/images/maddieD.png" alt="Card image cap">
                     <h4 class="card-title">Maddie Deming</h4>
                     <p class="card-text"></p>
                 </div>
             </div>
-            <div class="card bio-container">
+            <div class="card bio-container animated fadeInRight">
                 <div class="card-block">
                     <img src="assets/images/crystalM.jpg" alt="Card image cap">
                     <h4 class="card-title">Crystal Milliken</h4>
@@ -83,19 +87,24 @@
                 </p>
                 <div class="card-header"><h6>The following technologies were
                 used in this application:</h6></div>
-                <ul class="list-group bio-list list-group-flush" style="line-height: .5rem">
-                <a href="https://getbootstrap.com" class="list-group-item list-group-item-action ">Bootstrap v.4</a>
-                <a href="https://jquery.com/" class="list-group-item list-group-item-action">Jquery</a>
-                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation"class="list-group-item list-group-item-action">Geolocation services</a>
-                <a href="https://firebase.google.com/" class="list-group-item list-group-item-action">Firebase Database</a>
-                <a href="https://developer.uber.com/"class="list-group-item list-group-item-action">Uber API</a>
-                <a href="https://www.lyft.com/developers" class="list-group-item list-group-item-action">Lyft API</a>
-                <a href="http://www.chartjs.org/" class="list-group-item list-group-item-action">Chart.js</a>
-                </ul>
+                    <ul class="list-group bio-list list-group-flush" style="line-height: .5rem">
+                        <a href="https://getbootstrap.com" class="list-group-item list-group-item-action animated fadeInLeft ">Bootstrap v.4</a>
+                        <a href="https://jquery.com/" class="list-group-item list-group-item-action animated fadeInRight">Jquery</a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation"class="list-group-item list-group-item-action animated fadeInLeft">Geolocation services</a>
+                        <a href="https://firebase.google.com/" class="list-group-item list-group-item-action animated fadeInRight">Firebase Database</a>
+                        <a href="https://developer.uber.com/"class="list-group-item list-group-item-action animated fadeInLeft">Uber API</a>
+                        <a href="https://www.lyft.com/developers" class="list-group-item list-group-item-action animated fadeInRight">Lyft API</a>
+                        <a href="http://www.chartjs.org/" class="list-group-item list-group-item-action animated fadeInLeft">Chart.js</a>
+                        <a href="https://daneden.github.io/animate.css/" class="list-group-item list-group-item-action animated fadeInRight">Animate.css</a>
+                        <a href="https://michalsnik.github.io/aos/" class="list-group-item list-group-item-action animated fadeInLeft">Animate on Scroll</a>
+                    </ul>
             </div>
         </div>
      </main>
 
+    <script>
+        AOS.init();
+    </script>
     <script src="assets/javascript/login.js"></script>
 </body>
 </html>
