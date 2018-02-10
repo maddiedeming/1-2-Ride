@@ -1,7 +1,7 @@
 
 
 
-function lyftBarChart(response) {
+function lyftBarChart(response){
     let labels = [];
     for(var i = 0; i < response.cost_estimates.length; i++) {
         labels.push("Driver " + (i + 1) + " ");
@@ -38,7 +38,7 @@ function uberBarChart(response) {
         fill: false,
         lineTenstion: 0,
         backgroundColor: 'rgb(255, 160, 150)',
-        borderColor: 'rgb(0, 255, 0)',
+        borderColor: 'rgb(255, 255, 255)',
         data: uberCostData
     };
     let uberData = uberDataSet;
@@ -49,14 +49,16 @@ function uberBarChart(response) {
 
 // Draws Chart
 function BarChartRender(lyftLabels, lyftDataSet, uberData){
-    const lineChart = document.getElementById('line-chart').getContext('2d');
-    const textLineChart = new Chart(lineChart, {
+    const barChart = document.getElementById('bar-chart').getContext('2d');
+    const textBarChart = new Chart(barChart, {
         type: 'bar',
         data: {
             labels: lyftLabels,
             datasets: [lyftDataSet, uberData] 
             }
     });
+    const barChartElement = $("#bar-chart");
+    barChartElement.addClass("animated fadeInLeft");
 }
 
 
@@ -167,6 +169,8 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
             
         },
     });
+    const doughnutElement = $("#dough-chart");
+    doughnutElement.addClass("animated fadeInRight");
 }
 
 

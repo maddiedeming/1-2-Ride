@@ -1,4 +1,4 @@
-$(".chart-section").hide();
+$("#charts").hide();
 $("#carData").hide()
 // Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
@@ -90,6 +90,7 @@ function parseLyftData(data, start, end){
 function submitInfo(){
   event.preventDefault();
   $("#carData").show();
+  $("#lyftDetails").empty();
   const currentLocation = $("#currentLocationInput").val().trim();
   const destLocation = $("#destinationInput").val().trim();
   costComparison(currentLocation, destLocation);
@@ -168,7 +169,7 @@ function costComparison(currentLocation, destLocation) {
                 BarChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
-                $(".chart-section").show();
+                $("#charts").show();
                 })
             .fail(function(error){
               console.log(error)
@@ -238,9 +239,6 @@ var database = firebase.database();
 var lyftCount = 0;
 var uberCount = 0;
 
-var lyftButton = $("#btn-lyft");
-var uberButton = $("#btn-uber");
-
 
 database.ref().on("value", function(snapshot) {
   lyftCount = snapshot.child("Lyft").val().lyftCount;
@@ -251,7 +249,8 @@ function(errorObject) {
 
 
 function preferenceBtn() {
-  console.log($(this).val());
+  var lyftButton = $("#btn-lyft");
+  var uberButton = $("#btn-uber");
   if ($(this).val() === "Lyft") {
     lyftCount++;
     database.ref("Lyft").set({
@@ -264,10 +263,10 @@ function preferenceBtn() {
     })
   }
   database.ref().once('value').then(function(snapshot) {
-    $("#preference").text("Users have prefered Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
+    $("#preference").text("Users have preferred Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
   });
-  lyftButton.hide();
-  uberButton.hide();
+  lyftButton.fadeOut();
+  uberButton.fadeOut();
 }
 
 
