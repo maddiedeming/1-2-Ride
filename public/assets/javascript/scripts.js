@@ -238,9 +238,6 @@ var database = firebase.database();
 var lyftCount = 0;
 var uberCount = 0;
 
-var lyftButton = $("#btn-lyft");
-var uberButton = $("#btn-uber");
-
 
 database.ref().on("value", function(snapshot) {
   lyftCount = snapshot.child("Lyft").val().lyftCount;
@@ -251,7 +248,8 @@ function(errorObject) {
 
 
 function preferenceBtn() {
-  console.log($(this).val());
+  var lyftButton = $("#btn-lyft");
+  var uberButton = $("#btn-uber");
   if ($(this).val() === "Lyft") {
     lyftCount++;
     database.ref("Lyft").set({
@@ -266,8 +264,8 @@ function preferenceBtn() {
   database.ref().once('value').then(function(snapshot) {
     $("#preference").text("Users have prefered Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
   });
-  lyftButton.hide();
-  uberButton.hide();
+  lyftButton.fadeOut();
+  uberButton.fadeOut();
 }
 
 

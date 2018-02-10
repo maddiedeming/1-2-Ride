@@ -68,16 +68,22 @@
             <div class="col mt-5">
                 <div class="form-section my-auto" id="map"></div>
             </div>
-        </div> 
-        <section id="servicePreference"> 
-            <div class="row">
-                <h3 class="col d-inline" id="preference">Which of the following Services do you prefer to use?</h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row  pt-5 pb-5" id="servicePreference" style="background-color:#f2f1f2;">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div class="row d-block text-center">
+                    <h3 id="preference">Which Ride Would You Take?</h3>
+                    <button id="btn-lyft" style="width:49%;" class="btn preferenceButton" value="Lyft"><i style="color:white;" class="fab fa-fw fa-lyft fa-2x"></i></button>
+                    <button id="btn-uber" style="width:49%;" class="btn preferenceButton" value="Uber"><i data-fa-transform="grow-3" style="color:black;background-color:white;" class="fab fa-uber fa-2x"></i></button>
+                </div>  
             </div>
-            <div class="row">
-                <button id="btn-lyft" class="btn col preferenceButton" value="Lyft"><i style="color:white;" class="fab fa-fw fa-lyft fa-2x"></i></button>
-                <button id="btn-uber" class="btn col preferenceButton" value="Uber"><i data-fa-transform="grow-3" style="color:black; background-color:white;" class="fab fa-uber fa-2x"></i></button>
-            </div>  
-        </section>  
+            <div class="col-lg-2"></div>
+        </div>  
+    </div>
+    <div class="container">
         <!--Modal for error when accessing geolocation-->
         <div class="modal" tabindex="-1" role="dialog" aria-hidden="true" id="geolocationModal"> 
             <div class="modal-dialog" role="document">
@@ -97,27 +103,27 @@
             </div>
         </div>
         <!--End of Modal-->
-        <div class="row chart-section mt-3">
-            <div class="chart-container col" style="position: relative; height:40vh; width:80vw">
+        <div class="row text-center">
+            <div class="col mt-5 d-inline-block" style="max-width:570px;">
                 <canvas id="line-chart"></canvas>
             </div>
-        </div>
-        <div class="row chart-section mt-3">
-            <div class="chart-container col" style="position: relative; height:40vh; width:80vw">
+            <div class="col mt-5 d-inline-block" style="max-width:570px;">
                 <canvas id="dough-chart"></canvas>
             </div>
         </div>
-        <table class="table table-striped table-sm mt-3" id="carData">
-            <thead>
-                <tr>
-                    <th scope="col">Ride Type</th>
-                    <th scope="col">Est Cost</th>
-                    <th scope="col">Est Distance</th>
-                    <th scope="col">Est Pickup</th>
+        <div class="row text-center mt-3">
+            <table class="table table-striped table-sm mt-3" id="carData">
+                <thead>
+                    <tr>
+                        <th scope="col">Ride Type</th>
+                        <th scope="col">Est Cost</th>
+                        <th scope="col">Est Distance</th>
+                        <th scope="col">Est Pickup</th>
                     </tr>
-            </thead>
-            <tbody id="lyftDetails"></tbody>
-        </table>
+                </thead>
+                <tbody id="lyftDetails"></tbody>
+            </table>
+        </div>
     </div>
     <script src="assets/javascript/login.js"></script>
     <script src="assets/javascript/scripts.js"></script>
