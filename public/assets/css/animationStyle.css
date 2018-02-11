@@ -10,7 +10,7 @@
 .animateThis::after{
     content: '';
     display: block;
-    background-image: url("../images/car.gif");
+    background-image: url("../images/Car.gif");
     width: 100px; /* image width */
     height: 32px; /* image height */
     position: absolute;
