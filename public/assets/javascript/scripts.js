@@ -289,4 +289,5 @@ function hideModal(){
 }
 
 $("#submit").on("click", submitInfo);
-$("#currentLocation").on("click", getCurrentLocation)
+$("#currentLocation").on("click", getCurrentLocation);
+$(".preferenceButton").on("click", preferenceBtn);
