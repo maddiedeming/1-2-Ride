@@ -39,9 +39,11 @@ errorMessageDisplay.addClass("invisible");
 errorMessageDisplay.text("");
 // Create New User Account
 firebase.auth().onAuthStateChanged(function(user){
-    var pageName = location.pathname.split('/');
+    var pageName = location.pathname;
     if(user){
-        $(".preferenceButton").on("click", preferenceBtn);
+        if(pageName = "/1-2-Ride/public/index.html"){
+            $(".preferenceButton").on("click", preferenceBtn);
+        }
         savedEmail = user.email;
         displayEmail.val(savedEmail);
         if(user.displayName !== null){

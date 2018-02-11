@@ -36,7 +36,7 @@
 </head>
 <body >
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-sm justify-content-between testingClass">
+    <nav class="navbar navbar-expand-sm justify-content-between animateThis">
         <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i></a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-dark navbar-toggler-icon"></span>
@@ -82,8 +82,8 @@
             <div class="col-lg-8">
                 <div class="row d-block text-center">
                     <h3 id="preference">Which Ride Would You Take?</h3>
-                    <button id="btn-lyft" style="width:49%;" class="btn preferenceButton" value="Lyft"><i style="color:white;" class="fab fa-fw fa-lyft fa-2x"></i></button>
-                    <button id="btn-uber" style="width:49%;" class="btn preferenceButton" value="Uber"><i data-fa-transform="grow-3" style="color:black;background-color:white;" class="fab fa-uber fa-2x"></i></button>
+                    <button id="btn-lyft" class="btn preferenceButton" value="Lyft"><i style="color:white;" class="fab fa-fw fa-lyft fa-2x"></i></button>
+                    <button id="btn-uber" class="btn preferenceButton" onmouseover="hoverColor()" onmouseout="resetColor()" value="Uber"><i id="uberLogo" data-fa-transform="grow-3" class="fab fa-uber fa-2x"></i></button>
                 </div>  
             </div>
             <div class="col-lg-2"></div>
@@ -109,6 +109,7 @@
             </div>
         </div>
         <!--End of Modal-->
+
         <div class="row text-center">
             <div class="col mt-5 d-inline-block" style="max-width:570px;" data-aos="fade-left">
                 <canvas id="bar-chart"></canvas>

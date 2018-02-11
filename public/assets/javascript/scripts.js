@@ -1,5 +1,14 @@
-$("#charts").hide();
+//$("#charts").hide();
 $("#carData").hide()
+
+function hoverColor(){
+  $("#btn-uber").children().css("color","rgb(37, 37, 37)");
+  $("#btn-uber").css("background-color","rgb(37, 37, 37)");
+}
+function resetColor(){
+  $("#btn-uber").children().css("color","black");
+  $("#btn-uber").css("background-color","black");
+}
 // Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
   if(toBeReplaced !== undefined){
@@ -87,8 +96,7 @@ function parseLyftData(data, start, end){
 }
  // Below extracts Dom info, sends to calls --crystal
 function submitInfo(){
-  event.preventDefault();
-  $("#carData").show();
+  //$("#charts").show();
   $("#lyftDetails").empty();
   const currentLocation = $("#currentLocationInput").val().trim();
   const destLocation = $("#destinationInput").val().trim();
@@ -103,12 +111,14 @@ function costComparison(currentLocation, destLocation) {
     type:"GET",  
     })
     .done(function(response){
+      // The below try/catch checks to see if startLat and startLng are valid(!undefined) --crystal
       try{
         startLat = response.results[0].geometry.location.lat;
         startLng = response.results[0].geometry.location.lng;
       }catch(err){
         $('#geolocationModal').modal('show');
       }
+      
     })
     .fail(function(error){
       $('#geolocationModal').modal('show');
@@ -119,14 +129,13 @@ function costComparison(currentLocation, destLocation) {
         type:"GET",
       })
       .done(function(response){
+        // The below try/catch checks to see if destLat and destLng are valid(!undefined) --crystal
         try{
             destLat = response.results[0].geometry.location.lat;
             destLng = response.results[0].geometry.location.lng;
         }catch(err){
             $('#geolocationModal').modal('show');
         }
-        
-        
       })
       .then(function(){
         $.ajax({
@@ -136,6 +145,7 @@ function costComparison(currentLocation, destLocation) {
     
         })
         .then(function(response){
+          $("#carData").show();
           parseLyftData(response, startLat, destLng);
           let lyftData = lyftBarChart(response);
           let lyftDataSet = lyftData[0];
@@ -175,7 +185,6 @@ function costComparison(currentLocation, destLocation) {
                 BarChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
-                $("#charts").show();
                 })
             .fail(function(error){
               $('#geolocationModal').modal('show');
@@ -199,7 +208,6 @@ function seatComparison(currentLocation) {
     })
     .fail(function(error){
       $('#geolocationModal').modal('show');
-      console.log("err")
     })
     .then(function(){
       $.ajax({
