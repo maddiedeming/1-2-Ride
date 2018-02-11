@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <!-- Font Awesome -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -14,31 +13,43 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+        <script>
+                var config = {
+                apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
+                authDomain: "one2ride-193914.firebaseapp.com",
+                databaseURL: "https://one2ride-193914.firebaseio.com",
+                projectId: "one2ride-193914",
+                storageBucket: "one2ride-193914.appspot.com",
+                messagingSenderId: "232944570362"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <title>Login</title>
     </head>
-    <body class="background-color">
+    <body>
     <!-- NAVBAR -->
         <nav class="navbar navbar-expand-sm justify-content-between">
-            <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i> </a>
-            <div id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="bio.html">Project Creators</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Login<span class="sr-only">(current)</span></a>
-                    </li>                
+            <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i></a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-dark navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+                <ul class="nav navbar-nav navbar-right text-right">
+                    <li class="nav-item active"><a class="nav-link homePage" href="index.html">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="bio.html">About</a></li>
+                    <li class="nav-item active"><a class="nav-link loginLink" href="#">Login<span class="sr-only">(current)</span></a></li>  
+                    <li id="gearMenu" class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i></a></li>                              
                 </ul>
             </div>
-        </nav>
+        </nav>        
         <div class="container mt-3">
             <div class="row">
-                <div class="col-lg-4"></div>
-                <div class="col-lg-4">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item"><a id="signUp-tab" class="nav-link" data-toggle="tab" href="#signUp" role="tab" aria-controls="signUp" aria-selected="true">Sign Up</a></li>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <ul class="nav nav-tabs" role="tablist" >
+                        <li class="nav-item"><a id="signUp-tab"  class="nav-link" data-toggle="tab" href="#signUp" role="tab" aria-controls="signUp" aria-selected="true">Sign Up</a></li>
                         <li class="nav-item"><a id="login-tab" class="nav-link active" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">Login</a></li>
                     </ul>
                     <div class="tab-content">
@@ -52,8 +63,9 @@
                                     <label>Password</label>
                                     <input type="password" class="form-control" id="newPassword">
                                 </div>
+
                                 <span id="signUpError" class="errorMessage invisible badge badge-danger" style="width:100%;">Warning</span>
-                                <button id="newUser" type="submit" class="btn btn-block mt-2">Create Account</button>
+                                <button id="newUser" type="submit" class="btn btn-default btn-block mt-2">Create Account</button>
                             </form>
                         </div>
                         <div id="login" class="tab-pane fade show active" role="tabpanel" aria-labelledby="login-tab">
@@ -68,7 +80,7 @@
                                 </div>
                                 <a href="#" id="forgotPassword" data-toggle="modal" data-target="#forgotPasswordForm"><p>Forgot password?</p></a>
                                 <span id="loginError" class="errorMessage invisible badge badge-danger" style="width:100%;">Warning</span>
-                                <button id="loginSubmit" type="submit" class="btn btn-block mt-2">Submit</button>
+                                <button id="loginSubmit" type="submit" class="btn btn-default btn-block mt-2">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -85,20 +97,18 @@
                                     <input type="email" class="form-control" id="forgotPasswordEmail" placeholder="Enter email">
                                 </div>
                                 <span id="forgotPasswordError" class="errorMessage invisible badge badge-danger" style="width:100%;">Warning</span>
-                                <button id="forgotPasswordSubmit" type="submit" class="btn btn-block mt-2">Submit</button>
+                                <button id="forgotPasswordSubmit" type="submit" class="btn btn-default btn-block mt-2">Submit</button>
                             </form>
                         </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4"></div>
+                <div class="col-lg-3"></div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
         <script src="assets/javascript/login.js"></script>
     </body>
 </html>

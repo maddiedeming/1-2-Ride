@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <!-- Font Awesome -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -14,39 +13,44 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+        <script>
+                var config = {
+                apiKey: "AIzaSyBDPOOoAWGITH6Q5Dpuyk3H1vaGmRLixIY",
+                authDomain: "one2ride-193914.firebaseapp.com",
+                databaseURL: "https://one2ride-193914.firebaseio.com",
+                projectId: "one2ride-193914",
+                storageBucket: "one2ride-193914.appspot.com",
+                messagingSenderId: "232944570362"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <title>Settings</title>
     </head>
-    <body class="background-color">
+    <body>
     <!-- NAVBAR -->
         <nav class="navbar navbar-expand-sm justify-content-between">
-            <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i> </a>
-            <div id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link homePage"  href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="bio.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link loginLink" href="login.html">Login</a>
-                    </li>   
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fas fa-cog"></i><span class="sr-only">(current)</span></a>
-                    </li>                
+            <a class="navbar-brand" href="#">1-2 Ride <i class="fas fa-car"></i></a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-dark navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+                <ul class="nav navbar-nav navbar-right text-right">
+                    <li class="nav-item"><a class="nav-link homePage"  href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bio.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" id="loginLink" href="login.html">Login</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-cog"></i><span class="sr-only">(current)</span></a></li> 
                 </ul>
             </div>
-        </nav>
+        </nav>  
         <div class="container mt-3">
             <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
                 <!-- Work on This -->
                 <header>
-                <h1 class="d-inline">Settings</h1>
-                <div class="d-inline" style="float:right;">
-                    <button id="btn-lyft" class="btn"><i style="color:white;" class="fab fa-fw fa-lyft fa-2x"></i></button>
-                    <button id="btn-uber" class="btn"><i data-fa-transform="grow-3" style="color:black; background-color:white;" class="fab fa-uber fa-2x"></i></button>
-                </div>
+                <h1 class="text-center">Settings</h1>
                 </header>
                 <form class="pt-4">
                     <div class="form-group">
@@ -65,12 +69,12 @@
                             </div>
                             <input disabled id="displayEmail" type="text" class="form-control">
                             <div class="input-group-append">
-                                <button id="change" type="button" class="btn btn-outline-dark">Change</button>
+                                <button id="change" type="button" class="btn-default btn-outline-dark">Change</button>
                             </div>
                         </div>
                     </div>
                     <span id="updateAccountError" class="errorMessage invisible badge badge-danger" style="width:100%;">Warning</span>
-                    <button id="updateAccount" type="submit" class="btn btn-block mt-2">Update Account</button>
+                    <button id="updateAccount" type="submit" class="btn-default btn-block mt-2">Update Account</button>
                 </div>
                 <div class="col-lg-2"></div>
             </div>
@@ -78,8 +82,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
         <script src="assets/javascript/login.js"></script>
     </body>
 </html>

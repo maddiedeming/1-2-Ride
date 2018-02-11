@@ -1,7 +1,7 @@
 
 
 
-function lyftLineChart(response) {
+function lyftBarChart(response){
     let labels = [];
     for(var i = 0; i < response.cost_estimates.length; i++) {
         labels.push("Driver " + (i + 1) + " ");
@@ -27,7 +27,7 @@ function lyftLineChart(response) {
 
 
 
-function uberLineChart(response) {
+function uberBarChart(response) {
     let costData = [];
     for(var i = 0; i < response.prices.length; i++) {
         costData.push(response.prices[i].high_estimate);
@@ -38,7 +38,7 @@ function uberLineChart(response) {
         fill: false,
         lineTenstion: 0,
         backgroundColor: 'rgb(255, 160, 150)',
-        borderColor: 'rgb(0, 255, 0)',
+        borderColor: 'rgb(255, 255, 255)',
         data: uberCostData
     };
     let uberData = uberDataSet;
@@ -48,15 +48,17 @@ function uberLineChart(response) {
 
 
 // Draws Chart
-function LineChartRender(lyftLabels, lyftDataSet, uberData){
-    const lineChart = document.getElementById('line-chart').getContext('2d');
-    const textLineChart = new Chart(lineChart, {
+function BarChartRender(lyftLabels, lyftDataSet, uberData){
+    const barChart = document.getElementById('bar-chart').getContext('2d');
+    const textBarChart = new Chart(barChart, {
         type: 'bar',
         data: {
             labels: lyftLabels,
             datasets: [lyftDataSet, uberData] 
             }
     });
+    const barChartElement = $("#bar-chart");
+    barChartElement.addClass("animated fadeInLeft");
 }
 
 
@@ -167,6 +169,8 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
             
         },
     });
+    const doughnutElement = $("#dough-chart");
+    doughnutElement.addClass("animated fadeInRight");
 }
 
 
