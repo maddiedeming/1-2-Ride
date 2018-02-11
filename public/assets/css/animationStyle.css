@@ -18,7 +18,7 @@
     left: -10em;
     animation-direction: normal;
     animation-delay: 3s;
-    animation: animateCar 10s infinite linear;
+    animation: animateCar 10s linear;
 }
 .navbar-brand{
     position:relative;
