@@ -103,13 +103,14 @@ function costComparison(currentLocation, destLocation) {
     type:"GET",  
     })
     .done(function(response){
-      
-      startLat = response.results[0].geometry.location.lat;
-      startLng = response.results[0].geometry.location.lng;
-     
+      try{
+        startLat = response.results[0].geometry.location.lat;
+        startLng = response.results[0].geometry.location.lng;
+      }catch(err){
+        $('#geolocationModal').modal('show');
+      }
     })
     .fail(function(error){
-      console.log(error)
       $('#geolocationModal').modal('show');
       })
     .then(function(){
@@ -118,8 +119,13 @@ function costComparison(currentLocation, destLocation) {
         type:"GET",
       })
       .done(function(response){
-        destLat = response.results[0].geometry.location.lat;
-        destLng = response.results[0].geometry.location.lng;
+        try{
+            destLat = response.results[0].geometry.location.lat;
+            destLng = response.results[0].geometry.location.lng;
+        }catch(err){
+            $('#geolocationModal').modal('show');
+        }
+        
         
       })
       .then(function(){
@@ -270,7 +276,9 @@ function preferenceBtn() {
   uberButton.fadeOut();
 }
 
-
+function hideModal(){
+  $('#geolocationModal').modal('hide');
+}
 
 $("#submit").on("click", submitInfo);
 $("#currentLocation").on("click", getCurrentLocation)
