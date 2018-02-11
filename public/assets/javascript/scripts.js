@@ -18,7 +18,7 @@ function replaceSpaces(toBeReplaced){
 }
 //below function uses the geolocation function from the browser and returns the lat/long. It then populates the form accordingly, setting up 
 //for when the person adds destination address --crystal
-function getCurrentLocation(){
+function getCurrentLocation(event){
   event.preventDefault();
   var options = {
       enableHighAccuracy: true,
