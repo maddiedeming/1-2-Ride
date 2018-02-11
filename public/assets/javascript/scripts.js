@@ -88,7 +88,7 @@ function parseLyftData(data, start, end){
  // Below extracts Dom info, sends to calls --crystal
 function submitInfo(){
   event.preventDefault();
-  $("#carData").show();
+  
   $("#lyftDetails").empty();
   const currentLocation = $("#currentLocationInput").val().trim();
   const destLocation = $("#destinationInput").val().trim();
@@ -110,6 +110,7 @@ function costComparison(currentLocation, destLocation) {
       }catch(err){
         $('#geolocationModal').modal('show');
       }
+      
     })
     .fail(function(error){
       $('#geolocationModal').modal('show');
@@ -136,6 +137,7 @@ function costComparison(currentLocation, destLocation) {
     
         })
         .then(function(response){
+          $("#carData").show();
           parseLyftData(response, startLat, destLng);
           let lyftData = lyftBarChart(response);
           let lyftDataSet = lyftData[0];
