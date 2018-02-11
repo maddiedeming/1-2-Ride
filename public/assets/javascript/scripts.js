@@ -103,12 +103,15 @@ function costComparison(currentLocation, destLocation) {
     type:"GET",  
     })
     .done(function(response){
+      
       startLat = response.results[0].geometry.location.lat;
       startLng = response.results[0].geometry.location.lng;
+     
     })
     .fail(function(error){
-      console.log(error);
-    })
+      console.log(error)
+      $('#geolocationModal').modal('show');
+      })
     .then(function(){
       $.ajax({
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
@@ -142,7 +145,7 @@ function costComparison(currentLocation, destLocation) {
               startLng = response.results[0].geometry.location.lng;
             })
               .fail(function(error){
-              console.log(error)
+              $('#geolocationModal').modal('show');
             })
               .then(function(){
               $.ajax({
@@ -169,7 +172,7 @@ function costComparison(currentLocation, destLocation) {
                 $("#charts").show();
                 })
             .fail(function(error){
-              console.log(error)
+              $('#geolocationModal').modal('show');
             })
             })
           })
@@ -189,7 +192,8 @@ function seatComparison(currentLocation) {
       startLng = response.results[0].geometry.location.lng;
     })
     .fail(function(error){
-      console.log(error)
+      $('#geolocationModal').modal('show');
+      console.log("err")
     })
     .then(function(){
       $.ajax({
@@ -210,7 +214,7 @@ function seatComparison(currentLocation) {
             startLng = response.results[0].geometry.location.lng;
           })
             .fail(function(error){
-            console.log(error)
+            $('#geolocationModal').modal('show');
           })
             .then(function(){
               $.ajax({
@@ -224,7 +228,7 @@ function seatComparison(currentLocation) {
                 doughnutChartRender (lyftSeatData, uberSeatData)
               })
             .fail(function(error){
-              console.log(error)
+              $('#geolocationModal').modal('show');
             })
           })
         })

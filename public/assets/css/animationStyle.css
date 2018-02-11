@@ -10,9 +10,9 @@
 .testingClass::after{
     content: '';
     display: block;
-    background-image: url("../images/auto2-gif.gif");
-    width: 70px; /* image width */
-    height: 29px; /* image height */
+    background-image: url("../images/car.gif");
+    width: 100px; /* image width */
+    height: 32px; /* image height */
     position: absolute;
     top: 1em;
     left: -10em;
