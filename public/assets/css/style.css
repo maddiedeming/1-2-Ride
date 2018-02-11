@@ -1,46 +1,132 @@
-.form-section {
+
+.form-section{
     margin-top: 10%;
-    border: 1px solid #343a40;
     border-radius: 5px;
 }
 
-form {
+h3 {
+    text-align: center;
+}
+
+
+
+#servicePreference{
+    margin-top: 35px;
+}
+
+form{
     padding: 4%;
 }
 
-.chart-section {
+.chart-section{
     margin-top: 5%;
+}
+
+#line-chart{
+    width:500px;
+    height:300px;
+}
+
+#dough-chart{
+    width:500px;
+    height:300px;
 }
 
 #img-footer{
     height: 300px;
 }
 
-button {
-   background-color: #343a40!important;
-   border-color: #343a40!important;
+.btn-default {
+   background-color: #343a40;
+   border-color: #343a40;
+   color:white;
 }
 
-button:hover {
-    background-color: #5d6872!important;
+.btn:hover{
+    background-color: #5d6872;
 }
 
-canvas {
-    background-color: #343a40!important;
-}
-.bio-content{
-    margin-top:2em;
-    padding: 1em;
-    border: thin solid black;
-}
-.bio-content img, p{
-    float:left;
-}
-.table th{
-    font-size:15px;
-}
-.table td{
-    font-size: 10px;
-    padding-top: 0em;
+.navbar{
+    background-color: #fb4f3b;
 }
 
+.navbar a{
+    color:white;
+}
+
+.nav-item a{
+    color:white;
+}
+
+#btn-uber{
+    background-color:black;
+    width:49%;
+}
+
+/* #btn-uber:hover{
+    background-color:rgb(37, 37, 37);
+} */
+
+/* #uberLogo:hover{
+    color:rgb(37, 37, 37);
+} */
+
+#uberLogo{
+    color:black;
+    background-color: white;
+}
+
+#btn-lyft{
+    background-color:#ff00bf;
+    width:49%;
+}
+
+#btn-lyft:hover{
+    background-color:#ff59d6;
+}
+
+#map{
+    width: 100%;
+    height: 100%;
+    background-color:#f2f1f2;
+}
+
+.nav{
+    color:white;
+}
+
+.nav a:hover{
+    color:#26c7db;
+}
+
+.navbar-brand:hover{
+    color:#26c7db;
+}
+
+#forgotPassword{
+    color:#26c7db;
+}
+
+.fa-location-arrow{
+    color:#26c7db;
+}
+
+.nav-tabs a{
+    color:black;
+}
+
+.nav-tabs a:hover{
+    color:black;
+}
+
+/* @media screen and (max-width: 980px){
+
+}
+
+@media screen and (max-width: 768px){
+
+}
+
+@media screen and (max-width: 640px){
+
+} */

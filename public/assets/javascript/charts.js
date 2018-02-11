@@ -1,7 +1,7 @@
 
 
 
-function lyftLineChart(response) {
+function lyftBarChart(response){
     let labels = [];
     for(var i = 0; i < response.cost_estimates.length; i++) {
         labels.push("Driver " + (i + 1) + " ");
@@ -17,7 +17,7 @@ function lyftLineChart(response) {
         label: 'Lyft',
         fill: false,
         lineTenstion: 0,
-        backgroundColor: 'rgb(255, 255, 255)',
+        backgroundColor: 'rgb(73, 201, 255)',
         borderColor: 'rgb(255, 255, 255)',
         data: lyftCostData
     };
@@ -27,7 +27,7 @@ function lyftLineChart(response) {
 
 
 
-function uberLineChart(response) {
+function uberBarChart(response) {
     let costData = [];
     for(var i = 0; i < response.prices.length; i++) {
         costData.push(response.prices[i].high_estimate);
@@ -37,8 +37,8 @@ function uberLineChart(response) {
         label: 'Uber',
         fill: false,
         lineTenstion: 0,
-        backgroundColor: 'rgb(0, 255, 0)',
-        borderColor: 'rgb(0, 255, 0)',
+        backgroundColor: 'rgb(255, 160, 150)',
+        borderColor: 'rgb(255, 255, 255)',
         data: uberCostData
     };
     let uberData = uberDataSet;
@@ -48,15 +48,17 @@ function uberLineChart(response) {
 
 
 // Draws Chart
-function LineChartRender(lyftLabels, lyftDataSet, uberData){
-    const lineChart = document.getElementById('line-chart').getContext('2d');
-    const textLineChart = new Chart(lineChart, {
+function BarChartRender(lyftLabels, lyftDataSet, uberData){
+    const barChart = document.getElementById('bar-chart').getContext('2d');
+    const textBarChart = new Chart(barChart, {
         type: 'bar',
         data: {
             labels: lyftLabels,
             datasets: [lyftDataSet, uberData] 
             }
     });
+    const barChartElement = $("#bar-chart");
+    barChartElement.addClass("animated fadeInLeft");
 }
 
 
@@ -92,12 +94,11 @@ function lyftDoughnutChart(response) {
 
     let lyftSeatKeys =[];
     Object.keys(lyftSeatsCounted).forEach((value) => {
-        value = "Lyft " + value + " Seats";
-        lyftSeatKeys.push(value);
+        value =  "Lyft " + value + " Seats" ;
+        valueStr = value.toString();
+        lyftSeatKeys.push(valueStr);
     });
-
     lyftSeatData = [lyftSeatKeys, seatValuesArray];
-    console.log(lyftSeatData);
     return lyftSeatData;
 }
 
@@ -131,11 +132,11 @@ function uberDoughnutChart(response) {
     let uberSeatKeys =[];
     Object.keys(uberSeatsCounted).forEach((value) => {
         value = "Uber " + value + " Seats";
-        uberSeatKeys.push(value);
+        valueStr = value.toString();
+        uberSeatKeys.push(valueStr);
     });
 
     uberSeatData = [uberSeatKeys, seatValuesArray];
-    console.log("Uber seat Data: " + uberSeatData);
     return uberSeatData;
 }
 
@@ -143,11 +144,15 @@ function uberDoughnutChart(response) {
 
 function doughnutChartRender (lyftSeatData, uberSeatData) {
     const doughnutChart = document.getElementById("dough-chart");
-    const combinedKeyLabels = lyftSeatData[0] + ", " + uberSeatData[0];
-    const demo = combinedKeyLabels.split(",");
-    alert("Labels Array: " + combinedKeyLabels);
-    console.log(combinedKeyLabels)
-    // Combinedseatvals is making 3 2, 2 2
+    let combinedKeyLabels = [];
+    for(var i = 0; i <= lyftSeatData[0].length; i++) {
+        let indexValue = lyftSeatData[0].shift();
+        combinedKeyLabels.push(indexValue);
+    }
+    for(var i = 0; i <= uberSeatData[0].length; i++) {
+        let indexValue = uberSeatData[0].shift();
+        combinedKeyLabels.push(indexValue);
+    }
     const combinedSeatValues = lyftSeatData[1].join(" ") + " " +uberSeatData[1].join(" ");
     const combinedSeatsArray = combinedSeatValues.split(" ");
     const textDoughnutChart = new Chart(doughnutChart, {
@@ -156,15 +161,16 @@ function doughnutChartRender (lyftSeatData, uberSeatData) {
             datasets: [{
                 label: "red",
                 fill: true,
-                backgroundColor: ["rgb(250, 0, 0)", "rgb(0, 0, 250)", "rgb(0, 250, 250)", "rgb(250, 0, 250)", "rgb(0, 0, 0)" ],
+                backgroundColor: ["rgb(172, 212, 167)", "rgb(212, 167, 197)", "rgb(48, 158, 204)", "rgb(141, 189, 242)", "rgb(0, 0, 0)" ],
                 data: combinedSeatsArray
             }],
             
-            labels: [
-                combinedKeyLabels
-            ]
+            labels: combinedKeyLabels
+            
         },
     });
+    const doughnutElement = $("#dough-chart");
+    doughnutElement.addClass("animated fadeInRight");
 }
 
 

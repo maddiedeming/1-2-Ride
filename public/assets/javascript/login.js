@@ -1,13 +1,4 @@
-// Firebase
-var config = {
-    apiKey: "AIzaSyBq2X4aPR6j4XLD_uFwfZ5V_YGztrgIfkM",
-    authDomain: "ride-96547.firebaseapp.com",
-    databaseURL: "https://ride-96547.firebaseio.com",
-    projectId: "ride-96547",
-    storageBucket: "ride-96547.appspot.com",
-    messagingSenderId: "918464797775"
-};
-firebase.initializeApp(config);
+// Initialize Firebase
 var database = firebase.database();
 // Global Variables
 var email = "";
@@ -19,7 +10,7 @@ var errorMessage = "";
 // jQuery Global Variables
 var newUser = $("#newUser");
 var loginSubmit = $("#loginSubmit");
-var loginLink = $(".loginLink");
+var loginLink = $("#loginLink");
 var forgotPasswordSubmit = $("#forgotPasswordSubmit");
 var forgotPasswordEmail = $("#forgotPasswordEmail");
 var formControl = $(".form-control");
@@ -48,29 +39,27 @@ errorMessageDisplay.addClass("invisible");
 errorMessageDisplay.text("");
 // Create New User Account
 firebase.auth().onAuthStateChanged(function(user){
-    var pageName = location.pathname.split('/');
+    var pageName = location.pathname;
     if(user){
-        homePage.attr("href","index2.html");
+        $(".preferenceButton").on("click", preferenceBtn);
         savedEmail = user.email;
         displayEmail.val(savedEmail);
-        var fullName = user.displayName.split(/\s+/);
-        var firstName = fullName.slice(0, -1).join(" ");
-        var lastName = fullName.pop();
-        firstNameDisplay.val(firstName);
-        lastNameDisplay.val(lastName);
+        if(user.displayName !== null){
+            var fullName = user.displayName.split(/\s+/);
+            var firstName = fullName.slice(0, -1).join(" ");
+            var lastName = fullName.pop();
+            firstNameDisplay.val(firstName);
+            lastNameDisplay.val(lastName);
+        }
+        else{
+            user.updateProfile({displayName: "New User"});
+        }
         loginLink.text("Sign Out");
         gearMenu.show();
-        if(pageName[pageName.length - 1] === "index.html"){
-            location.href="index2.html";
-        }
     }
     else{
         loginLink.text("Login");
-        homePage.attr("href","index.html");
         gearMenu.hide();
-        if(pageName[pageName.length - 1] === "index2.html"){
-            location.href="index.html";
-        }
     }
 });
 // Create Account
@@ -80,9 +69,19 @@ newUser.on("click", function(event){
     password = newPassword.val().trim();
     formControl.val("");
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
-        location.href="index2.html";
         errorMessageDisplay.addClass("invisible");
         errorMessageDisplay.text("");
+        newUser.text("Success!");
+        newUser.removeClass("btn-default");
+        newUser.addClass("btn-success");
+        setTimeout(function(){
+            newUser.text("Update Account");
+            newUser.removeClass("btn-success");
+            newUser.addClass("btn-default");
+            loginLink.text("Sign Out");
+            gearMenu.show();
+            location.href="index.html";
+        }, 1500);
     }).catch(function(error){
         errorCode = error.code;
         errorMessage = error.message;
@@ -99,13 +98,14 @@ loginSubmit.on("click", function(event){
     password = inputPassword.val().trim();
     firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
         formControl.val("");
-        location.href="index2.html";
         errorMessageDisplay.addClass("invisible");
         errorMessageDisplay.text("");
+        location.href="index.html";
     }).catch(function(error){
         inputPassword.val("");
         errorCode = error.code;
         errorMessage = error.message;
+        //console.log(error)
         if(errorCode){
             loginError.removeClass("invisible");
             loginError.text(error.message);
@@ -123,9 +123,6 @@ loginLink.on("click", function(event){
             errorCode = error.code;
             errorMessage = error.message;
             if(errorCode){
-                //ADD POPOVER ON SIGN OUT BUTTON
-                //loginLink.removeClass("invisible");
-                //loginLink.text(error.message);
             }
         });
     }
@@ -143,11 +140,11 @@ forgotPasswordSubmit.on("click", function(event){
     auth.sendPasswordResetEmail(email).then(function() {
         errorMessageDisplay.addClass("invisible");
         errorMessageDisplay.text("");
-        forgotPasswordSubmit.removeClass("btn-primary");
+        forgotPasswordSubmit.removeClass("btn-default");
         forgotPasswordSubmit.addClass("btn-success");
         forgotPasswordSubmit.text("Email sent!");
         setTimeout(function(){
-            forgotPasswordSubmit.addClass("btn-primary");
+            forgotPasswordSubmit.addClass("btn-default");
             forgotPasswordSubmit.removeClass("btn-success");
             forgotPasswordSubmit.text("Submit");
             formControl.val("");
@@ -187,19 +184,19 @@ function undoEmailChange(x){
 updateAccount.on("click",function(event){
     event.preventDefault();
     var user = firebase.auth().currentUser;
-    var name = firstNameDisplay.val() + " " + lastName.val();
+    var name = firstNameDisplay.val() + " " + lastNameDisplay.val();
     user.updateProfile({
         displayName: name
     }).then(function() {
         errorMessageDisplay.addClass("invisible");
         errorMessageDisplay.text("");
         updateAccount.text("Success!");
-        updateAccount.removeClass("btn-primary");
+        updateAccount.removeClass("btn-default");
         updateAccount.addClass("btn-success");
         setTimeout(function(){
             updateAccount.text("Update Account");
             updateAccount.removeClass("btn-success");
-            updateAccount.addClass("btn-primary");
+            updateAccount.addClass("btn-default");
         }, 1500);
     }).catch(function(error){
         errorCode = error.code;

@@ -1,0 +1,25 @@
+
+@keyframes animateCar{
+    from {
+        left: -10em;
+    }
+    to {
+        left: 100%;
+    }
+}
+.animateThis::after{
+    content: '';
+    display: block;
+    background-image: url("../images/car.gif");
+    width: 100px; /* image width */
+    height: 32px; /* image height */
+    position: absolute;
+    top: 1em;
+    left: -10em;
+    animation-direction: normal;
+    animation-delay: 3s;
+    animation: animateCar 10s linear;
+}
+.navbar-brand{
+    position:relative;
+}

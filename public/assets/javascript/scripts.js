@@ -1,8 +1,20 @@
+//$("#charts").hide();
+$("#carData").hide()
 
-//below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
+function hoverColor(){
+  $("#btn-uber").children().css("color","rgb(37, 37, 37)");
+  $("#btn-uber").css("background-color","rgb(37, 37, 37)");
+}
+function resetColor(){
+  $("#btn-uber").children().css("color","black");
+  $("#btn-uber").css("background-color","black");
+}
+// Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
-  toBeReplaced = toBeReplaced.replace(/ /g,"+");
-  return toBeReplaced;
+  if(toBeReplaced !== undefined){
+    toBeReplaced = toBeReplaced.replace(/ /g,"+");
+    return toBeReplaced;
+  }
 }
 //below function uses the geolocation function from the browser and returns the lat/long. It then populates the form accordingly, setting up 
 //for when the person adds destination address --crystal
@@ -16,23 +28,23 @@ function getCurrentLocation(){
   function success(position){
       let lat = position.coords.latitude;
       let lng = position.coords.longitude;
+      $("#currentLocationInput").data("latitude",lat);
+      $("#currentLocationInput").data("longitude",lng);
       $.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCBscZGrlKGb8HG8o5qqNOXhWXbY9qLJx0", 
         type:"GET"})
       .done(function(results){
         let currentAddress = results.results[0].address_components[0].long_name + " " + results.results[0].address_components[1].short_name;
         let currentCity = results.results[0].address_components[2].short_name;
         let currentState = results.results[0].address_components[5].short_name;
-        $("#address").val(currentAddress);
-        $("#city").val(currentCity);
-        $("#state").val(currentState);
+        let formattedAddress = results.results[0].formatted_address
+        $("#currentLocationInput").val(formattedAddress);
       });
-    
   }
   function error(err){
      $('#geolocationModal').modal('show');
   }
 }
-//below function populates table with Uber data --crystal
+// Below function populates table with Uber data --crystal
 function populateUberData(response){
   response.prices.forEach(function(element){
     let newTr = $("<tr>");
@@ -52,7 +64,7 @@ function populateUberData(response){
     $("#lyftDetails").append(newTr);
   })
 }
-//below function populates table with Lyft data --crystal
+// Below function populates table with Lyft data --crystal
 function parseLyftData(data, start, end){
   $.ajax({
           url: 'https://api.lyft.com/v1/eta?lat=' +start + '&lng=' + end, 
@@ -82,43 +94,48 @@ function parseLyftData(data, start, end){
       });
    })
 }
- //Below extracts Dom info, sends to calls --crystal
+ // Below extracts Dom info, sends to calls --crystal
 function submitInfo(){
-  event.preventDefault();
-  const address = replaceSpaces($("#address").val());
-  const city = replaceSpaces($("#city").val().trim());
-  const state = $("#state").val().trim();
-  const lat = 0;
-  const lng = 0;
-  const destAddress = replaceSpaces($("#destAddress").val());
-  const destCity = replaceSpaces($("#destCity").val());
-  const destState = $("#destState").val();
-  costComparison(address, city, state, destAddress, destCity, destState);
-  seatComparison(address, city, state);
+  //$("#charts").show();
+  $("#lyftDetails").empty();
+  const currentLocation = $("#currentLocationInput").val().trim();
+  const destLocation = $("#destinationInput").val().trim();
+  costComparison(currentLocation, destLocation);
+  seatComparison(currentLocation);
 }
 
 // Function contains ajax requests for cost comparison Data
-function costComparison(address, city, state, destAddress, destCity, destState) {
+function costComparison(currentLocation, destLocation) {
   $.ajax({
-    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
     type:"GET",  
     })
     .done(function(response){
-      startLat = response.results[0].geometry.location.lat;
-      startLng = response.results[0].geometry.location.lng;
+      // The below try/catch checks to see if startLat and startLng are valid(!undefined) --crystal
+      try{
+        startLat = response.results[0].geometry.location.lat;
+        startLng = response.results[0].geometry.location.lng;
+      }catch(err){
+        $('#geolocationModal').modal('show');
+      }
+      
     })
     .fail(function(error){
-      console.log(error);
-    })
+      $('#geolocationModal').modal('show');
+      })
     .then(function(){
       $.ajax({
-        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destAddress + ',+' + destCity + ',+' + destState + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
         type:"GET",
       })
       .done(function(response){
-        destLat = response.results[0].geometry.location.lat;
-        destLng = response.results[0].geometry.location.lng;
-        
+        // The below try/catch checks to see if destLat and destLng are valid(!undefined) --crystal
+        try{
+            destLat = response.results[0].geometry.location.lat;
+            destLng = response.results[0].geometry.location.lng;
+        }catch(err){
+            $('#geolocationModal').modal('show');
+        }
       })
       .then(function(){
         $.ajax({
@@ -127,32 +144,28 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
           headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='},
     
         })
-        .done(function(response){
+        .then(function(response){
+          $("#carData").show();
           parseLyftData(response, startLat, destLng);
-          let lyftData = lyftLineChart(response);
+          let lyftData = lyftBarChart(response);
           let lyftDataSet = lyftData[0];
           let lyftLabels = lyftData[1];
           let lyftCostData = [lyftLabels, lyftDataSet];
-
           $.ajax({
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
             type:"GET",
       
           })
-          .then(function(){
-            $.ajax({url: 'https://api.lyft.com/v1/cost?start_lat=' +startLat + '&start_lng=' + startLng + "&end_lat=" + destLat + "&end_lng=" + destLng, 
-                  type:"GET",
-                  headers:{'Authorization': 'Bearer 0fscv5EK0kYmJeX5HAF2D7fkdFO1k9Xp/jxY73nRKJXNPTpwuqLw7ttZunhTUawBYvyGRLqvsqPmRRBF8Ofh4m44gfSRB30C+5RAhuHsmrZvENRVHFlnMeI='}})
             .done(function(response){
               startLat = response.results[0].geometry.location.lat;
               startLng = response.results[0].geometry.location.lng;
             })
               .fail(function(error){
-              console.log(error)
+              $('#geolocationModal').modal('show');
             })
               .then(function(){
               $.ajax({
-                url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destAddress + ',+' + destCity + ',+' + destState + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+                url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + destLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
                 type:"GET",
           
               })
@@ -168,13 +181,13 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
         
             })
               .done(function(response){
-                let uberData = uberLineChart(response);
-                LineChartRender(lyftLabels, lyftDataSet, uberData);
+                let uberData = uberBarChart(response);
+                BarChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
                 })
             .fail(function(error){
-              console.log(error)
+              $('#geolocationModal').modal('show');
             })
             })
           })
@@ -184,9 +197,9 @@ function costComparison(address, city, state, destAddress, destCity, destState) 
 }
 
 
-function seatComparison(address, city, state) {
+function seatComparison(currentLocation) {
   $.ajax({
-    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
     type:"GET",  
     })
     .done(function(response){
@@ -194,7 +207,7 @@ function seatComparison(address, city, state) {
       startLng = response.results[0].geometry.location.lng;
     })
     .fail(function(error){
-      console.log(error)
+      $('#geolocationModal').modal('show');
     })
     .then(function(){
       $.ajax({
@@ -206,7 +219,7 @@ function seatComparison(address, city, state) {
       .done(function(response){
         lyftDoughnutChart(response);
         $.ajax({
-          url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + ',+' + city + ',+' + state + '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
+          url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + currentLocation+ '&key=AIzaSyC8RAH-4_p4fAMXPDWYouvoZdia88sWRsU', 
           type:"GET",
     
         })
@@ -215,7 +228,7 @@ function seatComparison(address, city, state) {
             startLng = response.results[0].geometry.location.lng;
           })
             .fail(function(error){
-            console.log(error)
+            $('#geolocationModal').modal('show');
           })
             .then(function(){
               $.ajax({
@@ -229,21 +242,51 @@ function seatComparison(address, city, state) {
                 doughnutChartRender (lyftSeatData, uberSeatData)
               })
             .fail(function(error){
-              console.log(error)
+              $('#geolocationModal').modal('show');
             })
           })
         })
-      //Lyft Ends
-      //Uber Call
-        $.ajax({url: 'https://api.uber.com/v1.2/products', 
-                type: 'GET',
-                headers:{Authorization: 'Token YEEveIYDU-uU4BRcgORqnvoLRtrCtQDzc0yvbRVs'}})
-                .done(function(response){
-                  console.log("Below are the results coming back from Uber: ")
-                  console.log(response)
-                }).fail(function(error){
-                  console.log(error)
-                });
-                    }
-      $("#submit").on("click", submitInfo);
-      $("#currentLocation").on("click", getCurrentLocation)
+      })
+}
+
+// Button click Database incrementation
+var database = firebase.database();
+var lyftCount = 0;
+var uberCount = 0;
+
+
+database.ref().on("value", function(snapshot) {
+  lyftCount = snapshot.child("Lyft").val().lyftCount;
+  uberCount = snapshot.child("Uber").val().uberCount;
+}, 
+function(errorObject) {
+});
+
+
+function preferenceBtn() {
+  var lyftButton = $("#btn-lyft");
+  var uberButton = $("#btn-uber");
+  if ($(this).val() === "Lyft") {
+    lyftCount++;
+    database.ref("Lyft").set({
+      lyftCount: lyftCount
+    })
+  } else if ($(this).val() === "Uber") {
+    uberCount ++;
+    database.ref("Uber").set({
+      uberCount: uberCount
+    })
+  }
+  database.ref().once('value').then(function(snapshot) {
+    $("#preference").text("Users have preferred Lyft " + snapshot.child("Lyft").val().lyftCount + " times and Uber " + snapshot.child("Uber").val().uberCount + " times.");
+  });
+  lyftButton.fadeOut();
+  uberButton.fadeOut();
+}
+
+function hideModal(){
+  $('#geolocationModal').modal('hide');
+}
+
+$("#submit").on("click", submitInfo);
+$("#currentLocation").on("click", getCurrentLocation)
