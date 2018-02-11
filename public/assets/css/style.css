@@ -60,14 +60,25 @@ form{
 
 #btn-uber{
     background-color:black;
+    width:49%;
 }
 
-#btn-uber:hover{
+/* #btn-uber:hover{
     background-color:rgb(37, 37, 37);
+} */
+
+/* #uberLogo:hover{
+    color:rgb(37, 37, 37);
+} */
+
+#uberLogo{
+    color:black;
+    background-color: white;
 }
 
 #btn-lyft{
     background-color:#ff00bf;
+    width:49%;
 }
 
 #btn-lyft:hover{

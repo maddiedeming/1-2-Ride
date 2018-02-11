@@ -39,7 +39,7 @@ errorMessageDisplay.addClass("invisible");
 errorMessageDisplay.text("");
 // Create New User Account
 firebase.auth().onAuthStateChanged(function(user){
-    var pageName = location.pathname.split('/');
+    var pageName = location.pathname;
     if(user){
         $(".preferenceButton").on("click", preferenceBtn);
         savedEmail = user.email;

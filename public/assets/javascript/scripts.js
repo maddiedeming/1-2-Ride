@@ -1,5 +1,14 @@
-$("#charts").hide();
+//$("#charts").hide();
 $("#carData").hide()
+
+function hoverColor(){
+  $("#btn-uber").children().css("color","rgb(37, 37, 37)");
+  $("#btn-uber").css("background-color","rgb(37, 37, 37)");
+}
+function resetColor(){
+  $("#btn-uber").children().css("color","black");
+  $("#btn-uber").css("background-color","black");
+}
 // Below function takes a string, trims end, and replaces spaces with the "+" symbol for the ajax calls(necessary for API) --crystal 
 function replaceSpaces(toBeReplaced){
   if(toBeReplaced !== undefined){
@@ -87,8 +96,7 @@ function parseLyftData(data, start, end){
 }
  // Below extracts Dom info, sends to calls --crystal
 function submitInfo(){
-  event.preventDefault();
-  
+  //$("#charts").show();
   $("#lyftDetails").empty();
   const currentLocation = $("#currentLocationInput").val().trim();
   const destLocation = $("#destinationInput").val().trim();
@@ -177,7 +185,6 @@ function costComparison(currentLocation, destLocation) {
                 BarChartRender(lyftLabels, lyftDataSet, uberData);
                 //below function is fired -> populates table with uber data-crystal
                 populateUberData(response);
-                $("#charts").show();
                 })
             .fail(function(error){
               $('#geolocationModal').modal('show');
