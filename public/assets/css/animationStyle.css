@@ -7,7 +7,7 @@
         left: 100%;
     }
 }
-.testingClass::after{
+.animateThis::after{
     content: '';
     display: block;
     background-image: url("../images/car.gif");

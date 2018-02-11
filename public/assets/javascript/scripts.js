@@ -103,6 +103,7 @@ function costComparison(currentLocation, destLocation) {
     type:"GET",  
     })
     .done(function(response){
+      // The below try/catch checks to see if startLat and startLng are valid(!undefined) --crystal
       try{
         startLat = response.results[0].geometry.location.lat;
         startLng = response.results[0].geometry.location.lng;
@@ -119,14 +120,13 @@ function costComparison(currentLocation, destLocation) {
         type:"GET",
       })
       .done(function(response){
+        // The below try/catch checks to see if destLat and destLng are valid(!undefined) --crystal
         try{
             destLat = response.results[0].geometry.location.lat;
             destLng = response.results[0].geometry.location.lng;
         }catch(err){
             $('#geolocationModal').modal('show');
         }
-        
-        
       })
       .then(function(){
         $.ajax({
@@ -199,7 +199,6 @@ function seatComparison(currentLocation) {
     })
     .fail(function(error){
       $('#geolocationModal').modal('show');
-      console.log("err")
     })
     .then(function(){
       $.ajax({
