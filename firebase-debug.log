@@ -1,0 +1,32 @@
+[debug] [2018-02-11T01:43:44.537Z] ----------------------------------------------------------------------
+[debug] [2018-02-11T01:43:44.540Z] Command:       /usr/local/Cellar/node/8.9.0/bin/node /usr/local/bin/firebase serve -p 8080 -o 127.0.0.1
+[debug] [2018-02-11T01:43:44.541Z] CLI Version:   3.17.4
+[debug] [2018-02-11T01:43:44.541Z] Platform:      darwin
+[debug] [2018-02-11T01:43:44.541Z] Node Version:  v8.9.0
+[debug] [2018-02-11T01:43:44.558Z] Time:          Sat Feb 10 2018 20:43:44 GMT-0500 (EST)
+[debug] [2018-02-11T01:43:44.558Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-11T01:43:44.732Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-11T01:43:44.733Z] > authorizing via signed-in user
+[debug] [2018-02-11T01:43:44.734Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/one2ride-193914  
+  
+ Sat Feb 10 2018 20:43:44 GMT-0500 (EST)
+[debug] [2018-02-11T01:43:45.333Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-11T01:43:45.334Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/one2ride-193914/tokens  
+  
+ Sat Feb 10 2018 20:43:45 GMT-0500 (EST)
+[debug] [2018-02-11T01:43:46.092Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Akharri8/Desktop/code/Project-1/1-2-Ride'...
+[info] 
+[debug] [2018-02-11T01:43:46.096Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/one2ride-193914  
+  
+ Sat Feb 10 2018 20:43:46 GMT-0500 (EST)
+[debug] [2018-02-11T01:43:46.512Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-11T01:43:46.512Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/232944570362/clients/_:getWebAppConfig  
+  
+ Sat Feb 10 2018 20:43:46 GMT-0500 (EST)
+[debug] [2018-02-11T01:43:47.038Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://127.0.0.1:8080
+
